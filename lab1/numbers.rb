@@ -45,6 +45,47 @@ def findMaxDigitExcludingDivisibleByThree(number)
 end
 
 
+def findMinDivisor(number)
+	(2...number).each do |x|
+		if (number % x == 0)
+			return x
+		end
+	end
+	return number
+end
+
+
+def findSumOfDigitsBelowFive(number) 
+	sum = 0
+	while (number > 0)
+		if (number % 10 < 5)
+			sum += (number % 10)
+		end
+		number /= 10
+	end
+	return sum
+end
+
+
+def maxNonCoprimeNotDivisibleByMinDivisor(number)
+	minDiv = findMinDivisor(number)
+	(number).downto(2) do |x|
+		if ((isCoprime(x,number) == false) && ((x % minDiv) != 0))
+			return x 
+		end
+	end
+	return nil
+end
+
+
+def multiply(number)
+	if (maxNonCoprimeNotDivisibleByMinDivisor(number).nil?)
+		return nil
+	end
+	return maxNonCoprimeNotDivisibleByMinDivisor(number) * findSumOfDigitsBelowFive(number)
+end
+
+
 puts ("Введите число: ")
 number1 = $stdin.gets.chomp.to_i
 puts ("Количество четных чисел, не взаимно простых с данным: #{countNonCoprimeEvenNumbers(number1)}\n\n")
@@ -53,4 +94,11 @@ puts ("Введите число: ")
 number2 = $stdin.gets.chomp.to_i
 puts ("Максимальная цифра числа, не делящаяся на 3: #{findMaxDigitExcludingDivisibleByThree(number2)}\n\n")
 
+puts ("Введите число: ")
+number3 = $stdin.gets.chomp.to_i
+res = multiply(number3)
+if (res.nil?)
+	res = "Выберите другое число"
+end
+puts ("Произведение максимального числа, не взаимно простого с данным, не делящегося на наименьший делитель исходно числа, и суммы цифр числа, меньших 5: #{res}")
 
