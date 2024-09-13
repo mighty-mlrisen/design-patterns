@@ -1,6 +1,4 @@
-
 # задание 2-3
-
 
 if (ARGV.length != 0)
 	username = ARGV[0]
@@ -20,6 +18,35 @@ if (ARGV.length != 0)
 			puts ("Ничего, скоро будет ruby!")
 		else 
 			puts ("Всё равно скоро будет ruby!")
+	end
+
+	puts ("\n")
+
+	puts ("Введите команду ruby!")
+
+	ruby_command = $stdin.gets.chomp
+
+	begin 
+		result = eval (ruby_command)
+
+		puts "\n\nРезультат выполнения команды Ruby: #{result}"
+
+	rescue StandardError => e
+
+    	puts "Ошибка выполнения команды Ruby: #{e.message}"
+    end
+
+	puts ("\n\nВведите команду ОС!")
+
+	
+	os_command = $stdin.gets.chomp
+
+	puts ("\n")
+
+	if (system (os_command))
+		puts "\n\nКоманда ОС выполнена успешно."
+	else 
+		puts "Ошибка при выполнении команды ОС."
 	end
 
 else
