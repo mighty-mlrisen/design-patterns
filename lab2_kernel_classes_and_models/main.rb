@@ -7,3 +7,6 @@ student3 = Student.new('Ivan','Vasuta','Alekseevich',3,'89097843567',nil,'vasuta
 student1.print_info
 student2.print_info
 student3.print_info
+
+student1.name = "Matvei"
+puts(student1.name)
