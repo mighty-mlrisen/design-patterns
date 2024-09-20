@@ -1,7 +1,6 @@
 class Student
 
-    attr_reader :phone, :name, :surname, :patronymic, :telegram, :email, :git
-    attr_accessor :id
+    attr_reader :name, :surname, :patronymic, :id, :phone, :telegram, :email, :git
 
     def initialize(name: , surname: , patronymic: , **fields)
         self.name = name
@@ -14,6 +13,10 @@ class Student
         self.git = fields[:git]
     end
 
+    def self.valid_id?(id)
+        id.nil? || id.is_a?(Integer) || /^\d+$/.match?(id.to_s)
+    end
+      
     def self.valid_phone?(phone)
         phone.nil? || /^\+7|8[\s-]?(?:\(?\d{3}\)?[\s-]?)\d{3}[\s-]?\d{2}[\s-]?\d{2}$/.match?(phone)
     end
@@ -93,5 +96,12 @@ class Student
             raise ArgumentError, "Invalid patronymic format"
         end
         @patronymic = patronymic
+    end
+
+    def id=(id)
+        if (!self.class.valid_id?(id))
+            raise ArgumentError, "Invalid id format"
+        end
+        @id = id
     end
 end
