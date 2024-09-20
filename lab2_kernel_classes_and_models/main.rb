@@ -8,3 +8,5 @@ student1.print_info
 student2.print_info
 student3.print_info
 
+student1.set_contacts(phone: '89094574587')
+student1.print_info

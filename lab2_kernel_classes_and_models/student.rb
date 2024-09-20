@@ -7,10 +7,8 @@ class Student
         self.surname = surname
         self.patronymic = patronymic
         self.id = fields[:id]
-        self.phone = fields[:phone]
-        self.telegram = fields[:telegram]
-        self.email = fields[:email]
         self.git = fields[:git]
+        self.set_contacts(**fields)
     end
 
     def self.valid_id?(id)
@@ -49,27 +47,6 @@ class Student
         puts("-------------------------------")
     end
 
-    def phone=(phone)
-        if (!self.class.valid_phone?(phone))
-            raise ArgumentError, "Invalid phone number format"
-        end
-        @phone = phone
-    end
-
-    def telegram=(telegram)
-        if (!self.class.valid_telegram?(telegram))
-            raise ArgumentError, "Invalid telegram format"
-        end
-        @telegram = telegram
-    end
-
-    def email=(email)
-        if (!self.class.valid_email?(email))
-            raise ArgumentError, "Invalid email format"
-        end
-        @email = email
-    end
-
     def git=(git)
         if (!self.class.valid_git?(git))
             raise ArgumentError, "Invalid git format"
@@ -103,6 +80,23 @@ class Student
             raise ArgumentError, "Invalid id format"
         end
         @id = id
+    end
+
+    def set_contacts(**contacts)
+        if (!self.class.valid_phone?(contacts[:phone]))
+            raise ArgumentError, "Invalid phone number format"
+        end
+        @phone = contacts[:phone] if contacts.key?(:phone)
+
+        if (!self.class.valid_telegram?(contacts[:telegram]))
+            raise ArgumentError, "Invalid telegram format"
+        end
+        @telegram = contacts[:telegram] if contacts.key?(:telegram)
+
+        if (!self.class.valid_email?(contacts[:email]))
+            raise ArgumentError, "Invalid email format"
+        end
+        @email = contacts[:email] if contacts.key?(:email)
     end
 
     # проверка наличия git и контактов
