@@ -104,4 +104,17 @@ class Student
         end
         @id = id
     end
+
+    # проверка наличия git и контактов
+    def validate
+        self.has_git? && self.has_contacts?
+    end
+
+    def has_git?
+        !self.git.nil?
+    end
+
+    def has_contacts?
+        !self.phone.nil? || !self.telegram.nil? || !self.email.nil?
+    end
 end
