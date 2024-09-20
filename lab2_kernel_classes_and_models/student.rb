@@ -47,6 +47,26 @@ class Student
         puts("-------------------------------")
     end
 
+    def get_info
+        "#{self.get_full_name}, git: #{self.git}, #{self.get_contact}"
+    end
+
+    def get_full_name
+        "full name: #{self.surname} #{self.name[0]}.#{self.patronymic[0]}."
+    end
+
+    def get_contact
+        if (!self.phone.nil?)
+            "phone: #{self.phone}"
+        elsif (!self.telegram.nil?)
+            "telegram: #{self.telegram}"
+        elsif (!self.email.nil?)
+            "email: #{self.email}"
+        else
+            "contacts not specified"
+        end
+    end
+
     def git=(git)
         if (!self.class.valid_git?(git))
             raise ArgumentError, "Invalid git format"
