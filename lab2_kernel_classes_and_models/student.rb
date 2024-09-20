@@ -1,7 +1,7 @@
 class Student
 
-    attr_reader :phone
-    attr_accessor :id, :name, :surname, :patronymic, :telegram, :email, :git
+    attr_reader :phone, :name, :surname, :patronymic, :telegram, :email, :git
+    attr_accessor :id
 
     def initialize(name: , surname: , patronymic: , **fields)
         self.name = name
@@ -14,8 +14,24 @@ class Student
         self.git = fields[:git]
     end
 
-    def self.check_phone_number?(phone)
+    def self.valid_phone?(phone)
         phone.nil? || /^\+7|8[\s-]?(?:\(?\d{3}\)?[\s-]?)\d{3}[\s-]?\d{2}[\s-]?\d{2}$/.match?(phone)
+    end
+
+    def self.valid_telegram?(telegram)
+        telegram.nil? || /^\@[a-zA-Z0-9_]{5,}$/.match?(telegram)
+    end
+
+    def self.valid_email?(email)
+        email.nil? || /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.match?(email)
+    end
+
+    def self.valid_git?(git)
+        git.nil? || %r{^https?://github\.com/[a-zA-Z0-9_-]+$}.match?(git)
+    end
+
+    def self.valid_full_name?(name)
+        name.nil? || /^[А-ЯЁA-Z][а-яёa-z]+(-[А-ЯЁA-Z][а-яёa-z]+)?$/.match?(name)
     end
 
     def print_info
@@ -31,9 +47,51 @@ class Student
     end
 
     def phone=(phone)
-        if (!self.class.check_phone_number?(phone))
+        if (!self.class.valid_phone?(phone))
             raise ArgumentError, "Invalid phone number format"
         end
         @phone = phone
+    end
+
+    def telegram=(telegram)
+        if (!self.class.valid_telegram?(telegram))
+            raise ArgumentError, "Invalid telegram format"
+        end
+        @telegram = telegram
+    end
+
+    def email=(email)
+        if (!self.class.valid_email?(email))
+            raise ArgumentError, "Invalid email format"
+        end
+        @email = email
+    end
+
+    def git=(git)
+        if (!self.class.valid_git?(git))
+            raise ArgumentError, "Invalid git format"
+        end
+        @git = git
+    end
+
+    def name=(name)
+        if (!self.class.valid_full_name?(name))
+            raise ArgumentError, "Invalid name format"
+        end
+        @name = name
+    end
+
+    def surname=(surname)
+        if (!self.class.valid_full_name?(surname))
+            raise ArgumentError, "Invalid surname format"
+        end
+        @surname = surname
+    end
+
+    def patronymic=(patronymic)
+        if (!self.class.valid_full_name?(patronymic))
+            raise ArgumentError, "Invalid patronymic format"
+        end
+        @patronymic = patronymic
     end
 end
