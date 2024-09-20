@@ -1,12 +1,9 @@
 require './student.rb'
 
-student1 = Student.new('Artem','Mazurenko','Alekseevich',1,'89096753487','skimaskway',nil,'https://github.com/mighty-mlrisen')
-student2 = Student.new('Vlad','Solovyev','Olegovich',2,'89098945623','mightygost','vladsolovyev@yandex.ru','https://github.com/mightygost')
-student3 = Student.new('Ivan','Vasuta','Alekseevich',3,'89097843567',nil,'vasuta23@yandex.ru','https://github.com/lilgost')
+student1 = Student.new(name: 'Artem', surname: 'Mazurenko', patronymic: 'Alekseevich',id: 1, phone: '89096753487',telegram: 'skimaskway',email: 'mazurenko@yandex.ru',git: 'https://github.com/mighty-mlrisen')
+student2 = Student.new(name: 'Vlad',surname: 'Solovyev', patronymic: 'Olegovich',id: 2, phone: '89095784573',telegram: 'mightygost',git: 'https://github.com/mightygost',email: 'vladsolovyev@yandex.ru')
+student3 = Student.new(name: 'Ivan',surname: 'Vasuta', patronymic: 'Alekseevich',id: 3,git: 'https://github.com/lilgost')
 
 student1.print_info
 student2.print_info
 student3.print_info
-
-student1.name = "Matvei"
-puts(student1.name)

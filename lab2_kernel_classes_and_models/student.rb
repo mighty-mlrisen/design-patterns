@@ -1,16 +1,16 @@
 class Student
 
-    attr_accessor :id, :name, :surname, :patronymic, :phone, :telegram, :email, :git 
+    attr_accessor :id, :name, :surname, :patronymic, :phone, :telegram, :email, :git
 
-    def initialize(name, surname, patronymic, id=nil, phone=nil, telegram=nil, email=nil, git=nil)
-        self.id = id
+    def initialize(name: , surname: , patronymic: , **fields)
         self.name = name
         self.surname = surname
         self.patronymic = patronymic
-        self.phone = phone
-        self.telegram = telegram
-        self.email = email
-        self.git = git
+        self.id = fields[:id]
+        self.phone = fields[:phone]
+        self.telegram = fields[:telegram]
+        self.email = fields[:email]
+        self.git = fields[:git]
     end
 
     def print_info
@@ -24,5 +24,4 @@ class Student
         puts("git: #{@git ? @git : "not assigned"}")
         puts("-------------------------------")
     end
-
 end
