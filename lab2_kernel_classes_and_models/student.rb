@@ -32,7 +32,7 @@ class Student
     end
 
     def self.valid_full_name?(name)
-        name.nil? || /^[А-ЯЁA-Z][а-яёa-z]+(-[А-ЯЁA-Z][а-яёa-z]+)?$/.match?(name)
+        /^[А-ЯЁA-Z][а-яёa-z]+(-[А-ЯЁA-Z][а-яёa-z]+)?$/.match?(name)
     end
 
     def print_info
@@ -48,7 +48,7 @@ class Student
     end
 
     def get_info
-        "#{self.get_full_name}, git: #{self.git}, #{self.get_contact}"
+        "#{self.get_full_name}, git: #{self.git ? self.git : "git not specified"}, #{self.get_contact}"
     end
 
     def get_full_name
@@ -132,3 +132,88 @@ class Student
         !self.phone.nil? || !self.telegram.nil? || !self.email.nil?
     end
 end
+
+
+class Student_short
+    attr_reader :id, :full_name, :git, :contact
+    private_class_method :new
+
+    def initialize(id, full_name, git, contact)
+        self.id = id
+        self.full_name = full_name
+        self.git = git
+        self.contact = contact
+    end
+
+    def self.init_with_student(student)
+        self.new(student.id,student.get_full_name.slice(11..-1),student.git,student.get_contact)
+    end
+
+    def self.init_with_string(id, string)
+        hash = self.parse(string)
+        contact = nil
+        if (hash[:phone])
+            contact = "phone: #{hash[:phone]}"
+        elsif (hash[:telegram])
+            contact = "telegram: #{hash[:telegram]}"
+        elsif (hash[:email])
+            contact = "email: #{hash[:email]}"
+        end
+
+        self.new(id,hash[:full_name],hash[:git],contact)
+    end
+
+    def self.parse(string)
+        result = {}
+    
+        string.split(', ').each do |part|
+          key_value = part.split(': ')
+          key = key_value[0].strip.to_sym 
+          value = key_value[1].strip if key_value[1] 
+    
+          result[key] = value if key && value
+        end
+    
+        result
+      end
+
+    private
+
+    def id=(id)
+        if (!Student.valid_id?(id))
+            raise ArgumentError, "Invalid id format"
+        end
+        @id = id
+    end
+
+    def full_name=(full_name)
+        if (!self.class.valid_full_name?(full_name))
+            raise ArgumentError, "Invalid full name format"
+        end
+        @full_name = full_name
+    end
+
+    def git=(git)
+        if (!Student.valid_git?(git))
+            raise ArgumentError, "Invalid git format"
+        end
+        @git = git
+    end
+
+    def contact=(contact)
+        if (contact.include?("phone:") && !Student.valid_phone?(contact.slice(7..-1)))
+            raise ArgumentError, "Invalid phone number format"
+        elsif (contact.include?("telegram:") && !Student.valid_telegram?(contact.slice(10..-1)))
+            raise ArgumentError, "Invalid telegram format"
+        elsif (contact.include?("email:") && !Student.valid_email?(contact.slice(7..-1)))
+            raise ArgumentError, "Invalid email format"
+        end
+        @contact = contact
+    end
+
+    def self.valid_full_name?(full_name)
+        /^[А-ЯЁA-Z][а-яёa-z]+(-[А-ЯЁA-Z][а-яёa-z]+)?\s[А-ЯЁA-Z]\.[А-ЯЁA-Z]\.$/.match?(full_name)
+    end
+end
+
+

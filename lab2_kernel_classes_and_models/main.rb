@@ -8,7 +8,19 @@ student1.print_info
 student2.print_info
 student3.print_info
 
-student1.set_contacts(phone: '89094574587')
-student1.print_info
+#student1.set_contacts(phone: '89094574587')
+#student1.print_info
 
-puts (student1.get_info)
+#puts (student3.get_info)
+
+student4 = Student_short.init_with_student(student1)
+puts (student4.id)
+puts (student4.full_name)
+puts (student4.git)
+puts (student4.contact)
+
+student5 = Student_short.init_with_string(4, "full_name: Сергеев Н.А., git: https://github.com/krizfx, email: krizfx12@yandex.ru")
+puts (student5.id)
+puts (student5.full_name)
+puts (student5.git)
+puts (student5.contact)
