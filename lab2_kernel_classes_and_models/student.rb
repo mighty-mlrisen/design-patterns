@@ -1,15 +1,7 @@
-class Student
+class Human
+    attr_reader :id, :git
 
-    attr_reader :name, :surname, :patronymic, :id, :phone, :telegram, :email, :git
-
-    def initialize(name: , surname: , patronymic: , **fields)
-        self.name = name
-        self.surname = surname
-        self.patronymic = patronymic
-        self.id = fields[:id]
-        self.git = fields[:git]
-        self.set_contacts(**fields)
-    end
+    protected
 
     def self.valid_id?(id)
         id.nil? || id.is_a?(Integer) || /^\d+$/.match?(id.to_s)
@@ -29,6 +21,22 @@ class Student
 
     def self.valid_git?(git)
         git.nil? || %r{^https?://github\.com/[a-zA-Z0-9_-]+$}.match?(git)
+    end
+
+end
+
+
+class Student < Human
+
+    attr_reader :name, :surname, :patronymic, :phone, :telegram, :email
+
+    def initialize(name: , surname: , patronymic: , **fields)
+        self.name = name
+        self.surname = surname
+        self.patronymic = patronymic
+        self.id = fields[:id]
+        self.git = fields[:git]
+        self.set_contacts(**fields)
     end
 
     def self.valid_full_name?(name)
@@ -134,8 +142,8 @@ class Student
 end
 
 
-class Student_short
-    attr_reader :id, :full_name, :git, :contact
+class Student_short < Human
+    attr_reader :full_name, :contact
     private_class_method :new
 
     def initialize(id, full_name, git, contact)
@@ -180,7 +188,7 @@ class Student_short
     private
 
     def id=(id)
-        if (!Student.valid_id?(id))
+        if (!self.class.valid_id?(id))
             raise ArgumentError, "Invalid id format"
         end
         @id = id
@@ -194,18 +202,18 @@ class Student_short
     end
 
     def git=(git)
-        if (!Student.valid_git?(git))
+        if (!self.class.valid_git?(git))
             raise ArgumentError, "Invalid git format"
         end
         @git = git
     end
 
     def contact=(contact)
-        if (contact.include?("phone:") && !Student.valid_phone?(contact.slice(7..-1)))
+        if (contact.include?("phone:") && !self.class.valid_phone?(contact.slice(7..-1)))
             raise ArgumentError, "Invalid phone number format"
-        elsif (contact.include?("telegram:") && !Student.valid_telegram?(contact.slice(10..-1)))
+        elsif (contact.include?("telegram:") && !self.class.valid_telegram?(contact.slice(10..-1)))
             raise ArgumentError, "Invalid telegram format"
-        elsif (contact.include?("email:") && !Student.valid_email?(contact.slice(7..-1)))
+        elsif (contact.include?("email:") && !self.class.valid_email?(contact.slice(7..-1)))
             raise ArgumentError, "Invalid email format"
         end
         @contact = contact
