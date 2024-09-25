@@ -36,25 +36,28 @@ class Student < Human
         self.patronymic = patronymic
         self.id = fields[:id]
         self.git = fields[:git]
-        self.set_contacts(**fields)
+        self.set_contacts(phone: fields[:phone], telegram: fields[:telegram], email: fields[:email])
     end
 
     def self.valid_full_name?(name)
         /^[А-ЯЁA-Z][а-яёa-z]+(-[А-ЯЁA-Z][а-яёa-z]+)?$/.match?(name)
     end
 
-    def print_info
-        puts("id: #{@id ? @id : "not assigned"}")
-        puts("name: #{@name}")
-        puts("surname: #{@surname}")
-        puts("patronymic: #{@patronymic}")
-        puts("phone: #{@phone ? @phone : "not assigned"}")
-        puts("telegram: #{@telegram ? @telegram : "not assigned"}")
-        puts("email: #{@email ? @email : "not assigned"}")
-        puts("git: #{@git ? @git : "not assigned"}")
-        puts("-------------------------------")
+    def to_s
+        info = Array.new
+        
+        info << "id: #{@id ? @id : "not assigned"}"
+        info << "name: #{@name}"
+        info << "surname: #{@surname}"
+        info << "patronymic: #{@patronymic}"
+        info << "phone: #{@phone ? @phone : "not assigned"}"
+        info << "telegram: #{@telegram ? @telegram : "not assigned"}"
+        info << "email: #{@email ? @email : "not assigned"}"
+        info << "git: #{@git ? @git : "not assigned"}"
+      
+        info.join(", ") 
     end
-
+      
     def get_info
         "#{self.get_full_name}, git: #{self.git ? self.git : "git not specified"}, #{self.get_contact}"
     end
