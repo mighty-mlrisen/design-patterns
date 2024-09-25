@@ -33,20 +33,19 @@ def findIndexOfElement(array, value)
 end
 
 
-def loadArrayFromFile(path)
-	begin
-		array = File.read(path).split.map{|element| element.to_i}
-		return array
-	rescue StandardError => e
-    	puts "Произошла ошибка - #{e.message}"
-    end
+
+def load_array_from_file(path)
+	File.open(path) do |file|
+		array = file.read
+		array.split.map{|element| element.to_i}
+	end
 end
 
 
 if (ARGV.size < 2)
 	puts ("Необходимо ввести 2 значения: номер метода и адрес файла")
 else
-	array = loadArrayFromFile(ARGV[1])
+	array = load_array_from_file(ARGV[1])
 
 	puts("Массив: #{array.join(' ')}")
 
