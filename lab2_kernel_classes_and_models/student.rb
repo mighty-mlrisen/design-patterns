@@ -170,6 +170,27 @@ class Student < Human
     def has_contacts?
         !self.phone.nil? || !self.telegram.nil? || !self.email.nil?
     end
+
+    def self.read_from_txt(path)
+        if (path.nil?)
+            raise ArgumentError, "path to file is nil"
+        end
+
+        if (!File.exist?(path))
+            raise ArgumentError, "path to file does not exist"
+        end
+
+        students = Array.new
+
+        File.open(path,'r') do |file|
+            file.each_line do |line|
+                student = self.new_with_string(line)
+                students << student
+            end
+        end
+
+        students
+    end
 end
 
 

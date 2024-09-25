@@ -25,5 +25,13 @@ puts (student5.full_name)
 puts (student5.git)
 puts (student5.contact)
 
-student6 = Student.new_with_string("name: Anna, surname: Sergeeva, patronymic: Igorevna, id: 5, telegram: @og12jjd, email: og12@yandex.ru, git: https://github.com/og-like")
+student6 = Student.new_with_string("name: Anna, surname: Sergeeva, patronymic: Igorevna, id: 5, phone: 89096753487, telegram: @og12jjd, email: og12@yandex.ru, git: https://github.com/og-like")
 puts student6
+
+puts ("\n\n")
+
+students = Student.read_from_txt("students.txt")
+
+students.each do |x|
+    puts x
+end
