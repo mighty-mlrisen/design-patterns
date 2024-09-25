@@ -23,6 +23,19 @@ class Human
         git.nil? || %r{^https?://github\.com/[a-zA-Z0-9_-]+$}.match?(git)
     end
 
+    def self.parse(string)
+        result = {}
+    
+        string.split(', ').each do |part|
+          key_value = part.split(': ')
+          key = key_value[0].strip.to_sym 
+          value = key_value[1].strip if key_value[1] 
+    
+          result[key] = value if key && value
+        end
+    
+        result
+    end
 end
 
 
@@ -37,6 +50,21 @@ class Student < Human
         self.id = fields[:id]
         self.git = fields[:git]
         self.set_contacts(phone: fields[:phone], telegram: fields[:telegram], email: fields[:email])
+    end
+
+    def self.new_with_string(string)
+        hash = self.parse(string)
+
+        self.new(
+            name: hash[:name],
+            surname: hash[:surname],
+            patronymic: hash[:patronymic],
+            id: hash[:id].to_i,
+            phone: hash[:phone],
+            telegram: hash[:telegram],
+            email: hash[:email],
+            git: hash[:git]
+        )
     end
 
     def self.valid_full_name?(name)
@@ -173,20 +201,6 @@ class Student_short < Human
 
         self.new(id,hash[:full_name],hash[:git],contact)
     end
-
-    def self.parse(string)
-        result = {}
-    
-        string.split(', ').each do |part|
-          key_value = part.split(': ')
-          key = key_value[0].strip.to_sym 
-          value = key_value[1].strip if key_value[1] 
-    
-          result[key] = value if key && value
-        end
-    
-        result
-      end
 
     private
 

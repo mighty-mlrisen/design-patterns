@@ -24,3 +24,6 @@ puts (student5.id)
 puts (student5.full_name)
 puts (student5.git)
 puts (student5.contact)
+
+student6 = Student.new_with_string("name: Anna, surname: Sergeeva, patronymic: Igorevna, id: 5, telegram: @og12jjd, email: og12@yandex.ru, git: https://github.com/og-like")
+puts student6
