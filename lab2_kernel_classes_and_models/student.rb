@@ -4,13 +4,13 @@ class Student < Human
 
     attr_reader :name, :surname, :patronymic, :phone, :telegram, :email
 
-    def initialize(name: , surname: , patronymic: , **fields)
+    def initialize(name: , surname: , patronymic: , id: nil, git: nil, phone: nil, telegram: nil,email: nil)
         self.name = name
         self.surname = surname
         self.patronymic = patronymic
-        self.id = fields[:id]
-        self.git = fields[:git]
-        self.set_contacts(phone: fields[:phone], telegram: fields[:telegram], email: fields[:email])
+        self.id = id
+        self.git = git
+        self.set_contacts(phone: phone, telegram: telegram, email: email)
     end
 
     def self.new_with_string(string)
