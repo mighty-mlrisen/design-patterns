@@ -1,43 +1,4 @@
-class Human
-    attr_reader :id, :git
-
-    protected
-
-    def self.valid_id?(id)
-        id.nil? || id.is_a?(Integer) || /^\d+$/.match?(id.to_s)
-    end
-      
-    def self.valid_phone?(phone)
-        phone.nil? || /^\+7|8[\s-]?(?:\(?\d{3}\)?[\s-]?)\d{3}[\s-]?\d{2}[\s-]?\d{2}$/.match?(phone)
-    end
-
-    def self.valid_telegram?(telegram)
-        telegram.nil? || /^\@[a-zA-Z0-9_]{5,}$/.match?(telegram)
-    end
-
-    def self.valid_email?(email)
-        email.nil? || /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.match?(email)
-    end
-
-    def self.valid_git?(git)
-        git.nil? || %r{^https?://github\.com/[a-zA-Z0-9_-]+$}.match?(git)
-    end
-
-    def self.parse(string)
-        result = {}
-    
-        string.split(', ').each do |part|
-          key_value = part.split(': ')
-          key = key_value[0].strip.to_sym 
-          value = key_value[1].strip if key_value[1] 
-    
-          result[key] = value if key && value
-        end
-    
-        result
-    end
-end
-
+require './human.rb'
 
 class Student < Human
 
@@ -184,82 +145,23 @@ class Student < Human
 
         File.open(path,'r') do |file|
             file.each_line do |line|
-                student = self.new_with_string(line)
+                student = self.new_with_string(line.strip)
                 students << student
             end
         end
 
         students
     end
-end
 
-
-class Student_short < Human
-    attr_reader :full_name, :contact
-    private_class_method :new
-
-    def initialize(id, full_name, git, contact)
-        self.id = id
-        self.full_name = full_name
-        self.git = git
-        self.contact = contact
-    end
-
-    def self.init_with_student(student)
-        self.new(student.id,student.get_full_name.slice(11..-1),student.git,student.get_contact)
-    end
-
-    def self.init_with_string(id, string)
-        hash = self.parse(string)
-        contact = nil
-        if (hash[:phone])
-            contact = "phone: #{hash[:phone]}"
-        elsif (hash[:telegram])
-            contact = "telegram: #{hash[:telegram]}"
-        elsif (hash[:email])
-            contact = "email: #{hash[:email]}"
+    def self.write_to_txt(path,students)
+        if (path.nil?)
+            raise ArgumentError, "path to file is nil"
         end
 
-        self.new(id,hash[:full_name],hash[:git],contact)
-    end
-
-    private
-
-    def id=(id)
-        if (!self.class.valid_id?(id))
-            raise ArgumentError, "Invalid id format"
+        File.open(path,'w') do |file|
+            students.each do |student|
+                file.puts student.to_s
+            end
         end
-        @id = id
-    end
-
-    def full_name=(full_name)
-        if (!self.class.valid_full_name?(full_name))
-            raise ArgumentError, "Invalid full name format"
-        end
-        @full_name = full_name
-    end
-
-    def git=(git)
-        if (!self.class.valid_git?(git))
-            raise ArgumentError, "Invalid git format"
-        end
-        @git = git
-    end
-
-    def contact=(contact)
-        if (contact.include?("phone:") && !self.class.valid_phone?(contact.slice(7..-1)))
-            raise ArgumentError, "Invalid phone number format"
-        elsif (contact.include?("telegram:") && !self.class.valid_telegram?(contact.slice(10..-1)))
-            raise ArgumentError, "Invalid telegram format"
-        elsif (contact.include?("email:") && !self.class.valid_email?(contact.slice(7..-1)))
-            raise ArgumentError, "Invalid email format"
-        end
-        @contact = contact
-    end
-
-    def self.valid_full_name?(full_name)
-        /^[А-ЯЁA-Z][а-яёa-z]+(-[А-ЯЁA-Z][а-яёa-z]+)?\s[А-ЯЁA-Z]\.[А-ЯЁA-Z]\.$/.match?(full_name)
     end
 end
-
-
