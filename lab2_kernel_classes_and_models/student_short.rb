@@ -5,7 +5,7 @@ class Student_short < Human
   attr_reader :full_name, :contact
   private_class_method :new
 
-  def initialize(id, full_name, git, contact)
+  def initialize(full_name: , git: , contact: ,id: nil)
       self.id = id
       self.full_name = full_name
       self.git = git
@@ -13,7 +13,7 @@ class Student_short < Human
   end
 
   def self.init_with_student(student)
-      self.new(student.id,student.get_full_name.slice(11..-1),student.git,student.get_contact)
+      self.new(id: student.id, full_name: student.get_full_name.slice(11..-1), git: student.git, contact: student.get_contact)
   end
 
   def self.init_with_string(id, string)
@@ -27,30 +27,16 @@ class Student_short < Human
           contact = "email: #{hash[:email]}"
       end
 
-      self.new(id,hash[:full_name],hash[:git],contact)
+      self.new(id: id,full_name: hash[:full_name], git: hash[:git], contact: contact)
   end
 
   private
-
-  def id=(id)
-      if (!self.class.valid_id?(id))
-          raise ArgumentError, "Invalid id format"
-      end
-      @id = id
-  end
 
   def full_name=(full_name)
       if (!self.class.valid_full_name?(full_name))
           raise ArgumentError, "Invalid full name format"
       end
       @full_name = full_name
-  end
-
-  def git=(git)
-      if (!self.class.valid_git?(git))
-          raise ArgumentError, "Invalid git format"
-      end
-      @git = git
   end
 
   def contact=(contact)

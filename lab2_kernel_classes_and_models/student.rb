@@ -64,15 +64,8 @@ class Student < Human
         elsif (!self.email.nil?)
             "email: #{self.email}"
         else
-            "contacts not specified"
+            "contacts: not assigned"
         end
-    end
-
-    def git=(git)
-        if (!self.class.valid_git?(git))
-            raise ArgumentError, "Invalid git format"
-        end
-        @git = git
     end
 
     def name=(name)
@@ -94,13 +87,6 @@ class Student < Human
             raise ArgumentError, "Invalid patronymic format"
         end
         @patronymic = patronymic
-    end
-
-    def id=(id)
-        if (!self.class.valid_id?(id))
-            raise ArgumentError, "Invalid id format"
-        end
-        @id = id
     end
 
     def set_contacts(**contacts)
