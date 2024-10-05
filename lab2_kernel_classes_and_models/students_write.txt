@@ -1,3 +1,3 @@
-id: 1, name: Artem, surname: Mazurenko, patronymic: Alekseevich, phone: 89094574999, telegram: @skimaskway, email: mazurenko@yandex.ru, git: https://github.com/mighty-mlrisen
-id: 2, name: Vlad, surname: Solovyev, patronymic: Olegovich, phone: +7-(909)-578-45-73, telegram: @mightygost, email: vladsolovyev@yandex.ru, git: https://github.com/mightygost
+id: 1, name: Artem, surname: Mazurenko, patronymic: Alekseevich, phone: 89094574999, telegram: @skimaskway, email: mazurenko@yandex.ru, git: https://github.com/mightymlrisen
+id: 2, name: Vlad, surname: Solovyev, patronymic: Olegovich, phone: +7(909)5784573, telegram: @mightygost, email: vladsolovyev@yandex.ru, git: https://github.com/mightygost
 id: 3, name: Ivan, surname: Vasuta, patronymic: Alekseevich, phone: not assigned, telegram: not assigned, email: not assigned, git: https://github.com/lilgost

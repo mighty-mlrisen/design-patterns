@@ -43,8 +43,9 @@ class Student < Human
         info << "telegram: #{@telegram ? @telegram : "not assigned"}"
         info << "email: #{@email ? @email : "not assigned"}"
         info << "git: #{@git ? @git : "not assigned"}"
+        info << "-----------------------"
       
-        info.join(", ") 
+        info.join("\n") 
     end
       
     def get_info
@@ -160,7 +161,7 @@ class Student < Human
 
         File.open(path,'w') do |file|
             students.each do |student|
-                file.puts student.to_s
+                file.puts student.to_s.gsub("\n", ", ").gsub("-", "").chomp(", ")
             end
         end
     end
