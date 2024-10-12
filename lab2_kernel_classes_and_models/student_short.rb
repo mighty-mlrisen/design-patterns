@@ -30,6 +30,10 @@ class Student_short < Human
       self.new(id: id,full_name: hash[:full_name], git: hash[:git], contact: contact)
   end
 
+  def has_contacts?
+    !self.contact.nil?
+  end 
+
   private
 
   def full_name=(full_name)

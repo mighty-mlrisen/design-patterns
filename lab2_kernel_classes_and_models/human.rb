@@ -1,6 +1,28 @@
 class Human
     attr_reader :id, :git
 
+    def git=(git)
+        if (!self.class.valid_git?(git))
+            raise ArgumentError, "Invalid git format"
+        end
+        @git = git
+    end
+
+    def id=(id)
+        if (!self.class.valid_id?(id))
+            raise ArgumentError, "Invalid id format"
+        end
+        @id = id
+    end
+
+    def validate
+        self.has_git? && self.has_contacts?
+    end
+
+    def has_git?
+        !self.git.nil?
+    end
+
     protected
 
     def self.valid_id?(id)
@@ -35,19 +57,5 @@ class Human
         end
     
         result
-    end
-
-    def git=(git)
-        if (!self.class.valid_git?(git))
-            raise ArgumentError, "Invalid git format"
-        end
-        @git = git
-    end
-
-    def id=(id)
-        if (!self.class.valid_id?(id))
-            raise ArgumentError, "Invalid id format"
-        end
-        @id = id
     end
 end
