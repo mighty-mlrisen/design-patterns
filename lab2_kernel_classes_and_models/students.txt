@@ -1,4 +1,0 @@
-name: Anna, surname: Sergeeva, patronymic: Igorevna, id: 5, phone: 89096753487, telegram: @og12jjd, email: og12@yandex.ru, git: https://github.com/og-like
-name: Oleg, surname: Natcho, patronymic: Artemovich, id: 6, phone: 89096753945, telegram: @hfhf23, email: ejfh12@yandex.ru, git: https://github.com/kdfk
-name: Vlad, surname: Petrov, patronymic: Olegivich, id: 7, phone: 89096746723, telegram: @fogj12, email: odfjdjf1@yandex.ru, git: https://github.com/kejdfkjd
-name: Nikita, surname: Ivanov, patronymic: Artemovich, id: 8, phone: 89098945634, email: kjfdf12@yandex.ru, git: https://github.com/wjejwhewe
