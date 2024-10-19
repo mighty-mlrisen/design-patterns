@@ -13,7 +13,7 @@ class Student < Human
         self.set_contacts(phone: phone, telegram: telegram, email: email)
     end
 
-    def self.new_with_string(string)
+    def self.init_with_string(string)
         hash = self.parse(string)
 
         self.new(

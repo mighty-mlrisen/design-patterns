@@ -14,7 +14,7 @@ def read_from_txt(path)
 
     File.open(path,'r') do |file|
         file.each_line do |line|
-            student = Student.new_with_string(line.strip)
+            student = Student.init_with_string(line.strip)
             students << student
         end
     end
@@ -70,7 +70,7 @@ puts (student5.get_contact)
 
 
 puts ("\n\n")
-student6 = Student.new_with_string("name: Anna, surname: Sergeeva, patronymic: Igorevna, id: 5, phone: 89096753487, telegram: @og12jjd, email: og12@yandex.ru, git: https://github.com/og-like")
+student6 = Student.init_with_string("name: Anna, surname: Sergeeva, patronymic: Igorevna, id: 5, phone: 89096753487, telegram: @og12jjd, email: og12@yandex.ru, git: https://github.com/og-like")
 puts student6
 
 puts ("\n\n")

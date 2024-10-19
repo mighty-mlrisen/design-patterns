@@ -47,6 +47,10 @@ class Human
         end
     end
 
+    def has_contacts?
+        
+    end
+
     protected
 
     def self.valid_id?(id)
@@ -81,9 +85,5 @@ class Human
         end
     
         result
-    end
-
-    def has_contacts?
-        
     end
 end
