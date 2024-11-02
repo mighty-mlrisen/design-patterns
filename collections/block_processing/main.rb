@@ -6,7 +6,7 @@ def menu
         puts("1 - Даны два массива. Найти количество совпадающих по значению элементов.")
         puts("2 - Найти количество минимальных элементов в интервале.")
         puts("3 - Найти элементы, значение которых принадлежит отрезку.")
-        puts("4 -")
+        puts("4 - Вывести вначале положительные элементы, а затем - отрицательные.")
         puts("5 - ")
         puts("0 - Выход")
 
@@ -22,6 +22,8 @@ def menu
             display_count_min_in_interval
         when 3
             display_find_elements_in_segment
+        when 4
+            display_sorted_by_sign
         when 0
             exit
         else
@@ -101,7 +103,13 @@ def display_find_elements_in_segment
     a = gets.chomp.to_i
     print("Введите конец интервала: ")
     b = gets.chomp.to_i
-    puts("Элементы, значение которых принадлежит отрезку #{a}..#{b}: #{find_elements_in_segment(arr,a,b)}")
+    puts("Элементы, значение которых принадлежит отрезку #{a}..#{b}: #{find_elements_in_segment(arr,a,b).join(' ')}")
 end
+
+def display_sorted_by_sign
+    arr = input_selection
+    puts("Отсортированный массив по знаку: #{sorted_by_sign(arr).join(' ')}")
+end
+
 
 menu

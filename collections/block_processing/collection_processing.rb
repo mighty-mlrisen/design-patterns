@@ -12,3 +12,7 @@ def find_elements_in_segment(arr, a, b)
     arr.select { |num| (a..b).include?(num) }
 end
 
+def sorted_by_sign(arr)
+    arr.partition(&:positive?).flatten
+end
+
