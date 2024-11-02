@@ -18,6 +18,8 @@ def menu
         case task
         when 1
             display_count_matching_elements
+        when 2
+            display_count_min_in_interval
         when 0
             exit
         else
@@ -80,6 +82,15 @@ def display_count_matching_elements
     arr1 = input_selection
     arr2 = input_selection
     puts("Kоличество совпадающих по значению элементов: #{count_matching_elements(arr1,arr2)}")
+end
+
+def display_count_min_in_interval
+    arr = input_selection
+    print("Введите начало интервала: ")
+    a = gets.chomp.to_i
+    print("Введите конец интервала: ")
+    b = gets.chomp.to_i
+    puts("Kоличество минимальных элементов в интервале #{a}..#{b}: #{count_min_in_interval(arr,a,b)}")
 end
 
 menu
