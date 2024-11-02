@@ -7,7 +7,7 @@ def menu
         puts("2 - Найти количество минимальных элементов в интервале.")
         puts("3 - Найти элементы, значение которых принадлежит отрезку.")
         puts("4 - Вывести вначале положительные элементы, а затем - отрицательные.")
-        puts("5 - ")
+        puts("5 - Вывести количество элементов, которые могут быть получены как сумма двух любых других элементов списка.")
         puts("0 - Выход")
 
         print("Номер задачи: ")
@@ -24,6 +24,8 @@ def menu
             display_find_elements_in_segment
         when 4
             display_sorted_by_sign
+        when 5
+            display_count_elements_as_sum
         when 0
             exit
         else
@@ -111,5 +113,9 @@ def display_sorted_by_sign
     puts("Отсортированный массив по знаку: #{sorted_by_sign(arr).join(' ')}")
 end
 
+def display_count_elements_as_sum
+    arr = input_selection
+    puts("Kоличество элементов, которые могут быть получены как сумма двух любых других элементов списка: #{count_elements_as_sum(arr)}")
+end
 
 menu

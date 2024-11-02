@@ -16,3 +16,8 @@ def sorted_by_sign(arr)
     arr.partition(&:positive?).flatten
 end
 
+def count_elements_as_sum(arr)
+    arr.count do |element|
+      arr.combination(2).any? { |x, y| x + y == element }
+    end
+end
