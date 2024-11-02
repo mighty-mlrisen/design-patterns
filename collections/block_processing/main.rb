@@ -1,8 +1,10 @@
+require './collection_processing.rb'
+
 def menu
     loop do
         puts("Выберите задачу:")
         puts("1 - Даны два массива. Найти количество совпадающих по значению элементов.")
-        puts("2 -")
+        puts("2 - Найти количество минимальных элементов в интервале.")
         puts("3 - ")
         puts("4 -")
         puts("5 - ")
@@ -15,7 +17,7 @@ def menu
 
         case task
         when 1
-            test
+            display_count_matching_elements
         when 0
             exit
         else
@@ -34,7 +36,7 @@ def input_selection
         print("Номер способа: ")
         selection = gets.chomp.to_i
 
-        case choice
+        case selection
         when 1
             arr = input_from_keyboard
             break
@@ -46,6 +48,7 @@ def input_selection
         end
     end
     puts("Массив: #{arr.join(' ')}")
+    puts("\n\n")
     arr
 end
 
@@ -71,6 +74,12 @@ def input_from_file
       arr.split.map{|element| element.to_i}
     end
     arr
+end
+
+def display_count_matching_elements
+    arr1 = input_selection
+    arr2 = input_selection
+    puts("Kоличество совпадающих по значению элементов: #{count_matching_elements(arr1,arr2)}")
 end
 
 menu
