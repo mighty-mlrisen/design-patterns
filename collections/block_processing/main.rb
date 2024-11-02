@@ -45,6 +45,32 @@ def input_selection
           puts("Способа с номером #{selection} не существует!")
         end
     end
+    puts("Массив: #{arr.join(' ')}")
+    arr
+end
+
+def input_from_keyboard
+    puts("Введите массив:")
+    arr = gets.chomp.split.map(&:to_i)
+end
+
+def input_from_file
+    puts("Введите путь к файлу:")
+    path = gets.chomp
+
+    if (path.nil?)
+        raise ArgumentError, "path to file is nil"
+    end
+
+    if (!File.exist?(path))
+        raise ArgumentError, "path to file does not exist"
+    end
+
+    File.open(path,'r') do |file|
+      arr = file.read
+      arr.split.map{|element| element.to_i}
+    end
+    arr
 end
 
 menu
