@@ -5,7 +5,7 @@ def menu
         puts("Выберите задачу:")
         puts("1 - Даны два массива. Найти количество совпадающих по значению элементов.")
         puts("2 - Найти количество минимальных элементов в интервале.")
-        puts("3 - ")
+        puts("3 - Найти элементы, значение которых принадлежит отрезку.")
         puts("4 -")
         puts("5 - ")
         puts("0 - Выход")
@@ -20,6 +20,8 @@ def menu
             display_count_matching_elements
         when 2
             display_count_min_in_interval
+        when 3
+            display_find_elements_in_segment
         when 0
             exit
         else
@@ -91,6 +93,15 @@ def display_count_min_in_interval
     print("Введите конец интервала: ")
     b = gets.chomp.to_i
     puts("Kоличество минимальных элементов в интервале #{a}..#{b}: #{count_min_in_interval(arr,a,b)}")
+end
+
+def display_find_elements_in_segment
+    arr = input_selection
+    print("Введите начало интервала: ")
+    a = gets.chomp.to_i
+    print("Введите конец интервала: ")
+    b = gets.chomp.to_i
+    puts("Элементы, значение которых принадлежит отрезку #{a}..#{b}: #{find_elements_in_segment(arr,a,b)}")
 end
 
 menu
