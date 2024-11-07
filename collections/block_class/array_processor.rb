@@ -15,7 +15,19 @@ class Array_processor
         result
     end
 
+    def min
+        min_element = self.array.empty? ? nil : self.array.first
 
+        self.array.each do |element|
+            if (yield(element) < yield(min_value))
+                min_element = element
+            end
+        end
+        min_element
+    end
+    
+    
+    
     private
 
     attr_accessor :array
