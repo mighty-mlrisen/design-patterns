@@ -4,6 +4,17 @@ class Array_processor
         self.array = array.dup
     end
 
+    def filter_map
+        result = []
+        self.array.each do |element|
+            value = yield(element)
+            if (value)
+                result << element
+            end
+        end
+        result
+    end
+
 
     private
 
