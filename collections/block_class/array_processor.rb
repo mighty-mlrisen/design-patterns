@@ -47,6 +47,15 @@ class Array_processor
         end
         [array_1,array_2]
     end
+
+    def group_by
+        result = {}
+        self.array.each do |element|
+            key = yield(element)
+            result[key] ? result[key] << element : result[key] = [element]
+        end
+        result
+    end
     
     
     
