@@ -1,4 +1,4 @@
-class Array_processor
+class ArrayProcessor
 
     def initialize(array)
         self.array = array.dup
@@ -67,11 +67,6 @@ class Array_processor
         result
     end
     
-    
-    
     private
-
     attr_accessor :array
-
-  
 end
