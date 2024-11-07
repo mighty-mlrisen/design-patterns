@@ -56,6 +56,16 @@ class Array_processor
         end
         result
     end
+
+    def count
+        result = 0
+        self.array.each do |element|
+            if (yield(element))
+                result += 1
+            end
+        end
+        result
+    end
     
     
     
