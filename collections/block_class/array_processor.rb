@@ -35,6 +35,18 @@ class Array_processor
         result
     end
         
+    def partition
+        array_1 = []
+        array_2 = []
+        self.array.each do |element|
+            if (yield(element))
+                array_1 << element
+            else
+                array_2 << element
+            end
+        end
+        [array_1,array_2]
+    end
     
     
     
