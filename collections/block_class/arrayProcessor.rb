@@ -9,7 +9,7 @@ class ArrayProcessor
         self.array.each do |element|
             value = yield(element)
             if (value)
-                result << element
+                result << value
             end
         end
         result
@@ -19,7 +19,7 @@ class ArrayProcessor
         min_element = self.array.empty? ? nil : self.array.first
 
         self.array.each do |element|
-            if (yield(element) < yield(min_value))
+            if (yield(element) < yield(min_element))
                 min_element = element
             end
         end
