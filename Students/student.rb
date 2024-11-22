@@ -1,15 +1,20 @@
 require './human.rb'
+require 'date'
+
 
 class Student < Human
 
-    attr_reader :name, :surname, :patronymic, :phone, :telegram, :email
+    include Comparable
 
-    def initialize(name: , surname: , patronymic: , id: nil, git: nil, phone: nil, telegram: nil,email: nil)
+    attr_reader :name, :surname, :patronymic, :phone, :telegram, :email, :birthdate
+
+    def initialize(name: , surname: , patronymic: , id: nil, git: nil, phone: nil, telegram: nil,email: nil, birthdate: nil)
         self.name = name
         self.surname = surname
         self.patronymic = patronymic
         self.id = id
         self.git = git
+        self.birthdate = birthdate
         self.set_contacts(phone: phone, telegram: telegram, email: email)
     end
 
@@ -28,28 +33,25 @@ class Student < Human
         )
     end
 
+    def <=>(other)
+        return nil unless other.is_a?(Student)
+        return 0 if (self.birthdate.nil? && other.birthdate.nil?)
+		return 1 if self.birthdate.nil?
+		return -1 if other.birthdate.nil?
+
+		self.birthdate <=> other.birthdate
+    end
+
     def self.valid_full_name?(name)
         /^[А-ЯЁA-Z][а-яёa-z]+(-[А-ЯЁA-Z][а-яёa-z]+)?$/.match?(name)
     end
 
     def to_s
-        info = Array.new
-        
-        info << "id: #{@id ? @id : "not assigned"}"
-        info << "name: #{@name}"
-        info << "surname: #{@surname}"
-        info << "patronymic: #{@patronymic}"
-        info << "phone: #{@phone ? @phone : "not assigned"}"
-        info << "telegram: #{@telegram ? @telegram : "not assigned"}"
-        info << "email: #{@email ? @email : "not assigned"}"
-        info << "git: #{@git ? @git : "not assigned"}"
-        info << "-----------------------"
-      
-        info.join("\n") 
+        "#{"-------------------\nID: #{self.id}\n" unless self.id.nil?}Surname: #{ self.surname }\nName: #{ self.name }\nPatronymic: #{ self.patronymic }\n#{"Birthdate: #{ self.birthdate }\n" unless self.birthdate.nil?}#{"Phone Number: #{ self.phone }\n" unless self.phone.nil?}#{"Telegram: #{ self.telegram }\n" unless self.telegram.nil?}#{"Email: #{ self.email }\n" unless self.email.nil?}#{"Git: #{ self.git }\n" unless self.git.nil?}-------------------"
     end
       
     def get_info
-        "#{self.get_full_name}, git: #{self.git ? self.git : "git not specified"}, #{self.get_contact}"
+        "#{self.get_full_name}, git: #{self.git}, #{self.get_contact}"
     end
 
     def name=(name)
@@ -71,6 +73,16 @@ class Student < Human
             raise ArgumentError, "Invalid patronymic format"
         end
         @patronymic = patronymic
+    end
+
+    def birthdate=(birthdate)
+        if (birthdate.is_a?(Date) || birthdate.nil?)
+            @birthdate = birthdate
+          elsif birthdate.is_a?(String) 
+             @birthdate = Date.parse(birthdate)
+          else
+            raise ArgumentError, "Invalid birthdate format"
+          end
     end
 
     def set_contacts(**contacts)
