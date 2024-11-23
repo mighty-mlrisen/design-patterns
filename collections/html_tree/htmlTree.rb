@@ -2,8 +2,11 @@ require './tag.rb'
 require 'enumerator'
 require './iterator_bfs.rb'
 require './iterator_dfs.rb'
+require './iterator.rb'
 
 class HTMLTree
+
+  include Enumerable
 
   ALLOWED_TAGS = %w[html head body div h1 h2 p ul li a span].freeze
   ALLOWED_ATTRIBUTES = %w[class id href src alt title style target].freeze
@@ -20,6 +23,13 @@ class HTMLTree
   
   def dfs
     Iterator_dfs.new(self.root)
+  end
+
+  def each
+    iterator = Iterator_dfs.new(self.root)
+    iterator.each do |element| 
+      yield element
+    end
   end
 
   private

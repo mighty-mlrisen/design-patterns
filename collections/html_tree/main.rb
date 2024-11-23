@@ -21,10 +21,14 @@ HTML
 
 tree = HTMLTree.new(html_string2)
 
-puts tree.root.to_s
-puts("\n\n")
 
-puts 'DFS:'
+puts "\nМетод count для дерева: #{tree.count}"
+puts "\nМетод find для дерева (условие - имя 'p'): #{tree.find{|x| x.name == "p"}.to_s}"
+puts "\nМетод count с условием (имя div): #{tree.count{|x| x.name == "div"}}"
+puts "\nКоличество детей у первого наследника корня: #{tree.root.children[0].count_child}"
+
+
+puts "\nDFS:"
 tree.dfs.each do |element|
   puts("#{element}")
 end
@@ -32,4 +36,12 @@ end
 puts "\n\nBFS:"
 tree.bfs.each do |element|
   puts("#{element}")
+end
+
+puts "\n\n select: "
+
+empty_tags = tree.select {|tag| tag.has_attributes?}
+
+empty_tags.each do |tag| 
+  puts tag
 end

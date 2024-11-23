@@ -1,4 +1,3 @@
-
 class Iterator 
   include Enumerable
   attr_reader :root
