@@ -78,6 +78,12 @@ class TestArrayProcessor < Minitest::Test
       expected = 3
       assert_equal(expected, result) 
     end
+
+    def test_get_element
+      result = self.test_array.get_element(1)
+      expected = -2
+      assert_equal(expected, result)
+    end
     
     private
     attr_accessor :test_array

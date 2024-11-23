@@ -4,6 +4,10 @@ class ArrayProcessor
         self.array = array.dup
     end
 
+    def get_element(index)
+		self.array[index]
+	end
+
     def filter_map
         result = []
         self.array.each do |element|
