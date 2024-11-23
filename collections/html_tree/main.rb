@@ -1,31 +1,16 @@
+Dir.chdir('/Users/artemmazurenko/design-patterns/collections/html_tree') # меняем рабочую директорию
 require "./htmlTree.rb"
 require "./tag.rb"
 
-html_string1 = <<-HTML
-<html>
-  <body>
-    <div class="container1">
-      <p class="test">Hello, world!</p>
-      <div>
-        <h1>jsddj</h1>
-      </div>
-    </div>
-    <div class="container2">
-      <h1>Hello, world!</h1>
-      <h1>Welcome to the HTML Tree example.</h1>
-    </div>
-  </body>
-</html>
-HTML
 
 html_string2 = <<-HTML
 <html>
   <body>
-    <div class="container1" id="cont_1">
-      <p class="container1">Hello, world!</p>
-      <p>Welcome to the HTML Tree example.</p>
+    <div class="container1" id="cont_div">
+      <p class="paragraph1">Hello, world!</p>
+      <p>HTML Tree example.</p>
     </div>
-    <div class="container2" id="cont_1">
+    <div class="container2" id="cont_div">
       <h1>Title 1</h1>
       <h1>Title 2</h1>
     </div>

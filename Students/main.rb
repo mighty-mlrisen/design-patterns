@@ -1,6 +1,7 @@
-require './student.rb'
-require './student_short.rb'
-require "./binary_tree.rb"
+Dir.chdir('/Users/artemmazurenko/design-patterns/Students') # меняем рабочую директорию
+require './student'
+require './student_short'
+require './binary_tree'
 require "date"
 
 def read_from_txt(path)

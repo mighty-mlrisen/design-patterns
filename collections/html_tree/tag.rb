@@ -16,7 +16,6 @@ class Tag
     "<#{self.name}#{has_attributes? ? attributes_string : ''}>#{has_content? ? self.content : ''}"
   end
 
-
   def count_child
     self.children.size
   end
