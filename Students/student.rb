@@ -36,7 +36,9 @@ class Student < Human
     def <=>(other)
         return nil unless other.is_a?(Student)
         return 0 if (self.birthdate.nil? && other.birthdate.nil?)
-		return 1 if self.birthdate.nil?
+
+	    return 1 if self.birthdate.nil?
+
 		return -1 if other.birthdate.nil?
 
 		self.birthdate <=> other.birthdate
