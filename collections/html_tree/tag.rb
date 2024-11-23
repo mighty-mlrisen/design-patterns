@@ -13,8 +13,9 @@ class Tag
   end
 
   def to_s
-    "<#{self.name}#{has_attributes? ? attributes_string : ''}>#{has_content? ? self.content : ''}"
+    "<#{self.name}#{has_attributes? ? attributes_string : ''}>#{has_content? ? self.content : ''}</#{self.name}>"
   end
+  
 
   def count_child
     self.children.size
