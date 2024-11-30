@@ -1,7 +1,7 @@
-Dir.chdir('/Users/artemmazurenko/design-patterns/Students') # меняем рабочую директорию
-require './student'
-require './student_short'
-require './binary_tree'
+Dir.chdir('/Users/artemmazurenko/design-patterns/Students') 
+require './models/student/student.rb'
+require './models/student_short/student_short.rb'
+require './models/binary_tree/binary_tree.rb'
 require "date"
 
 def read_from_txt(path)
@@ -99,6 +99,21 @@ binary_tree.insert(ivan)
 binary_tree.insert(maria)
 binary_tree.insert(dmitry)
 
+#binary_tree.print_tree
+
+
+puts "Поиск студентов с датой рождения - 11.04.2006:\n #{binary_tree.iterator.find{|x| x.element.birthdate == Date.parse("11.04.2006")}.element.to_s}"
+
+
+puts "\nСтуденты с датой рождения > 22.10.2004:"
+
+select = binary_tree.iterator.select {|x| x.element.birthdate > Date.parse("22.10.2004")}
+
+select.each do |x| 
+  puts x.element
+end
+
+puts "\nВывод студентов:"
 
 binary_tree.iterator.each do |node|
    puts node.element

@@ -1,6 +1,6 @@
-require './node.rb'
-require './iterator_binary_tree.rb'
-require './student.rb'
+require './models//binary_tree/iterator_binary_tree.rb'
+require './models//binary_tree/node.rb'
+require './models/student/student.rb'
 
 class BinaryTree 
   
@@ -21,6 +21,13 @@ class BinaryTree
 
     def iterator 
       IteratorBinaryTree.new(self.root)
+    end
+
+    def print_tree(node = self.root)
+      return if node.nil?
+      print_tree(node.left)
+      puts (node.element)
+      print_tree(node.right)
     end
 
     private

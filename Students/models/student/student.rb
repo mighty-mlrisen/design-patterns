@@ -1,4 +1,4 @@
-require './human.rb'
+require './models/human/human.rb'
 require 'date'
 
 
