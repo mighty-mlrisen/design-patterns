@@ -2,6 +2,7 @@ Dir.chdir('/Users/artemmazurenko/design-patterns/Students')
 require './models/student/student.rb'
 require './models/student_short/student_short.rb'
 require './models/binary_tree/binary_tree.rb'
+require './models/data_table/data_table.rb'
 require "date"
 
 def read_from_txt(path)
@@ -118,3 +119,6 @@ puts "\nВывод студентов:"
 binary_tree.iterator.each do |node|
    puts node.element
 end
+
+data_table = Data_table.new([[]])
+puts data_table.get_element(0,0)
