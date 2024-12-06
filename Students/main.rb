@@ -3,6 +3,7 @@ require './models/student/student.rb'
 require './models/student_short/student_short.rb'
 require './models/binary_tree/binary_tree.rb'
 require './models/data_table/data_table.rb'
+require './models/data_list/data_list.rb'
 require "date"
 
 def read_from_txt(path)
@@ -121,4 +122,13 @@ binary_tree.iterator.each do |node|
 end
 
 data_table = Data_table.new([[]])
-puts data_table.get_element(0,0)
+#puts data_table.get_element(0,0)
+
+data_list = Data_list.new([artem,ivan,vlad])
+
+data_list.select(1)
+data_list.select(1)
+data_list.select(0)
+
+puts data_list.get_selected.to_s
+
