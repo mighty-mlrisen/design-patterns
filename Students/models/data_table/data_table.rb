@@ -4,6 +4,21 @@ class Data_table
         self.data = data
     end
 
+    def get_element(row,col)
+        unless (row >= 0 && row < self.row_count && col >= 0 && col < self.col_count)
+            raise IndexError,'Index is out of range'
+        end
+        self.data[row][col]
+    end
+
+    def row_count
+        self.data.size
+    end
+
+    def col_count
+        self.data.empty? ? 0 : self.data[0].size
+    end
+
     private
     attr_reader :data
 
