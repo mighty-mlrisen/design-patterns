@@ -15,12 +15,21 @@ class Data_list
         self.selected.dup
     end
 
-    def get_names
-        raise NotImplementedError, "Not implemented"
+    def get_data
+        index = 1
+        data_table = [self.get_names]
+        selected = self.get_selected
+        selected.each do |selected_index|
+            data = self.data[selected_index]
+            row = self.build_row(index,data)
+            data_table.append(row)
+            index += 1
+        end
+        Data_table.new(data_table)
     end
 
-    def get_data
-        raise NotImplementedError, "Not implemented"
+    def get_names
+      raise NotImplementedError, "Not implemented"
     end
 
     protected
@@ -29,5 +38,9 @@ class Data_list
 
     def data=(elements)
         @data = elements
+    end
+
+    def build_row(index, obj)
+      raise NotImplementedError, "Not implemented"
     end
 end
