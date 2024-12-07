@@ -4,6 +4,7 @@ require './models/student_short/student_short.rb'
 require './models/binary_tree/binary_tree.rb'
 require './models/data_table/data_table.rb'
 require './models/data_list/data_list.rb'
+require './models/data_list/data_list_student_short.rb'
 require "date"
 
 def read_from_txt(path)
@@ -42,7 +43,7 @@ end
 
 artem = Student.new(name: 'Artem',surname: 'Mazurenko', patronymic: 'Alekseevich',id: 1 , phone: '89096753487',telegram: '@skimaskway',email: 'mazurenko@yandex.ru',git: 'https://github.com/mighty-mlrisen',birthdate: Date.parse("18.03.2004"))
 vlad = Student.new(name: 'Vlad',surname: 'Solovyev', patronymic: 'Olegovich',id: 2, phone: '+7-(909)-578-45-73',telegram: '@mightygost',git: 'https://github.com/mightygost',email: 'vladsolovyev@yandex.ru',birthdate: Date.parse("11.04.2006"))
-ivan = Student.new(name: 'Ivan',surname: 'Vasuta', patronymic: 'Alekseevich',id: 3,git: 'https://github.com/lilgost',birthdate: Date.parse("12.09.2000"))
+ivan = Student.new(name: 'Ivan',surname: 'Vasuta', patronymic: 'Alekseevich',id: 3,git: 'https://github.com/lilgost',telegram: '@lilgost_18',birthdate: Date.parse("12.09.2000"))
 maria = Student.new(name: 'Maria', surname: 'Ivanova', patronymic: 'Alexeevna', id: 4, phone: '89997776655', telegram: '@mivanova', email: 'm.ivanova@mail.ru', git: 'https://github.com/mivanova', birthdate: Date.parse("12.07.2002"))
 dmitry = Student.new(name: 'Dmitry', surname: 'Kuznetsov', patronymic: 'Pavlovich', id: 5, phone: '89165554433', telegram: '@dkuznetsov', email: 'd.kuznetsov@gmail.com', git: 'https://github.com/dkuznetsov', birthdate: Date.parse("22.10.2001"))
 
@@ -121,14 +122,28 @@ binary_tree.iterator.each do |node|
    puts node.element
 end
 
-data_table = Data_table.new([[]])
-#puts data_table.get_element(0,0)
 
-data_list = Data_list.new([artem,ivan,vlad])
 
-data_list.select(1)
-data_list.select(1)
+
+def print_table(data_table)
+    (0...data_table.row_count).each do |i|
+        (0...data_table.col_count).each do |j|
+            print "#{data_table.get_element(i, j)}\t"
+        end
+        puts "\n"
+    end
+end
+
+student_short = []
+
+[artem,vlad,ivan,maria,dmitry].each do |obj|
+    student_short.append(Student_short.init_with_student(obj))
+end
+
+data_list = Data_list_student_short.new(student_short)
 data_list.select(0)
-
-puts data_list.get_selected.to_s
+data_list.select(1)
+data_list.select(2)
+data_table = data_list.get_data
+print_table(data_table)
 

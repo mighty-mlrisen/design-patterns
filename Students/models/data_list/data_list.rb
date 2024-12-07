@@ -8,7 +8,7 @@ class Data_list
         unless (number >= 0 && number < self.data.size)
             raise IndexError,'Index is out of range'
         end
-        self.selected << self.data[number].id unless self.selected.include?(self.data[number].id)
+        self.selected << number unless self.selected.include?(number)
     end
 
     def get_selected
@@ -23,7 +23,7 @@ class Data_list
         raise NotImplementedError, "Not implemented"
     end
 
-    private
+    protected
     attr_reader :data
     attr_accessor :selected
 
