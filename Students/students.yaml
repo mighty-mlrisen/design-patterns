@@ -1,0 +1,28 @@
+---
+- :id: 1
+  :surname: Mazurenko
+  :name: Artem
+  :patronymic: Alekseevich
+  :birthdate: 2004-03-18
+  :telegram: "@skimaskway"
+  :email: mazurenko@yandex.ru
+  :phone_number: '89096753487'
+  :git: https://github.com/mighty-mlrisen
+- :id: 2
+  :surname: Solovyev
+  :name: Vlad
+  :patronymic: Olegovich
+  :birthdate: 2006-04-11
+  :telegram: "@mightygost"
+  :email: vladsolovyev@yandex.ru
+  :phone_number: "+7-(909)-578-45-73"
+  :git: https://github.com/mightygost
+- :id: 3
+  :surname: Vasuta
+  :name: Ivan
+  :patronymic: Alekseevich
+  :birthdate: 2000-09-12
+  :telegram: "@lilgost_18"
+  :email:
+  :phone_number:
+  :git: https://github.com/lilgost

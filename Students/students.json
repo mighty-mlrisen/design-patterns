@@ -1,36 +1,35 @@
 [
-    {
-      "id": 1,
-      "name": "Vlad",
-      "surname": "Solovyev",
-      "patronymic": "Olegovich",
-      "phone": "+7-(909)-578-45-73",
-      "telegram": "@mightygost",
-      "email": "vladsolovyev@yandex.ru",
-      "git": "https://github.com/mightygost",
-      "birthdate": "2006-04-11"
-    },
-    {
-      "id": 2,
-      "name": "Artem",
-      "surname": "Mazurenko",
-      "patronymic": "Alekseevich",
-      "phone": "89096753487",
-      "telegram": "@skimaskway",
-      "email": "mazurenko@yandex.ru",
-      "git": "https://github.com/mighty-mlrisen",
-      "birthdate": "2004-03-18"
-    },
-    {
-      "id": 3,
-      "name": "Ivan",
-      "surname": "Vasuta",
-      "patronymic": "Alekseevich",
-      "phone": null,
-      "telegram": "@lilgost_18",
-      "email": null,
-      "git": "https://github.com/lilgost",
-      "birthdate": "2000-09-12"
-    }
+  {
+    "id": 1,
+    "surname": "Mazurenko",
+    "name": "Artem",
+    "patronymic": "Alekseevich",
+    "birthdate": "2004-03-18",
+    "telegram": "@skimaskway",
+    "email": "mazurenko@yandex.ru",
+    "phone": "89096753487",
+    "git": "https://github.com/mighty-mlrisen"
+  },
+  {
+    "id": 2,
+    "surname": "Solovyev",
+    "name": "Vlad",
+    "patronymic": "Olegovich",
+    "birthdate": "2006-04-11",
+    "telegram": "@mightygost",
+    "email": "vladsolovyev@yandex.ru",
+    "phone": "+7-(909)-578-45-73",
+    "git": "https://github.com/mightygost"
+  },
+  {
+    "id": 3,
+    "surname": "Vasuta",
+    "name": "Ivan",
+    "patronymic": "Alekseevich",
+    "birthdate": "2000-09-12",
+    "telegram": "@lilgost_18",
+    "email": null,
+    "phone": null,
+    "git": "https://github.com/lilgost"
+  }
 ]
-

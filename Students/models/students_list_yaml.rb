@@ -1,26 +1,23 @@
-require 'json'
+require 'yaml'
 require './models/entities/student.rb'
 require './models/entities/student_short.rb'
 require './models/data_list/data_list_student_short.rb'
 
-class Student_list_JSON
+class Students_list_YAML
     
     def initialize(file_path)
         self.file_path = file_path
         self.students = []
     end
 
-    def read()
-        content = File.read(self.file_path)
-        student_hashes = JSON.parse(content, symbolize_names: true)
-        self.students = student_hashes.map do |student_hash|
-            Student.new(**student_hash)
-        end
+    def read
+        content = YAML.safe_load(File.read(self.file_path), permitted_classes: [Date, Symbol])
+        self.students = content.map { |student| Student.new(**student) }
     end
 
     def write
-        data = self.students.map { |student| student.to_h }
-        File.write(self.file_path, JSON.pretty_generate(data))
+        content = self.students.map { |student| student.to_h }
+        File.write(self.file_path, content.to_yaml)
     end
 
     def get_student_by_id(id)
