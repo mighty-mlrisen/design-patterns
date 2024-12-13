@@ -1,6 +1,6 @@
 require './models//binary_tree/iterator_binary_tree.rb'
 require './models//binary_tree/node.rb'
-require './models/student/student.rb'
+require './models/entities/student.rb'
 
 class BinaryTree 
   

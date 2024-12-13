@@ -15,6 +15,10 @@ class Data_list
         self.selected.dup
     end
 
+    def clear_selected
+        self.selected = []
+    end
+
     def get_data
         index = 1
         data_table = [self.get_names]
@@ -28,6 +32,10 @@ class Data_list
         Data_table.new(data_table)
     end
 
+    def data=(elements)
+      @data = elements
+    end
+
     def get_names
       raise NotImplementedError, "Not implemented"
     end
@@ -35,10 +43,6 @@ class Data_list
     protected
     attr_reader :data
     attr_accessor :selected
-
-    def data=(elements)
-        @data = elements
-    end
 
     def build_row(index, obj)
       raise NotImplementedError, "Not implemented"

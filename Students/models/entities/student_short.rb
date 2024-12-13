@@ -1,5 +1,5 @@
-require './models/human/human.rb'
-require './models/student/student.rb'
+require './models/entities/human.rb'
+require './models/entities/student.rb'
 
 class Student_short < Human
   private_class_method :new

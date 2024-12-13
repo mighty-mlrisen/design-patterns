@@ -1,6 +1,6 @@
 Dir.chdir('/Users/artemmazurenko/design-patterns/Students') 
-require './models/student/student.rb'
-require './models/student_short/student_short.rb'
+require './models/entities/student.rb'
+require './models/entities/student_short.rb'
 require './models/binary_tree/binary_tree.rb'
 require './models/data_table/data_table.rb'
 require './models/data_list/data_list.rb'
