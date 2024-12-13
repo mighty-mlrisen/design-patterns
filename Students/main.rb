@@ -5,6 +5,7 @@ require './models/binary_tree/binary_tree.rb'
 require './models/data_table/data_table.rb'
 require './models/data_list/data_list.rb'
 require './models/data_list/data_list_student_short.rb'
+require './models/student_list_json.rb'
 require "date"
 
 def read_from_txt(path)
@@ -41,7 +42,7 @@ def write_to_txt(path,students)
 end
 
 
-artem = Student.new(name: 'Artem',surname: 'Mazurenko', patronymic: 'Alekseevich',id: 1 , phone: '89096753487',telegram: '@skimaskway',email: 'mazurenko@yandex.ru',git: 'https://github.com/mighty-mlrisen',birthdate: Date.parse("18.03.2004"))
+artem = Student.new(id: 1, name: 'Artem',surname: 'Mazurenko', patronymic: 'Alekseevich', phone: '89096753487',telegram: '@skimaskway',email: 'mazurenko@yandex.ru',git: 'https://github.com/mighty-mlrisen',birthdate: Date.parse("18.03.2004"))
 vlad = Student.new(name: 'Vlad',surname: 'Solovyev', patronymic: 'Olegovich',id: 2, phone: '+7-(909)-578-45-73',telegram: '@mightygost',git: 'https://github.com/mightygost',email: 'vladsolovyev@yandex.ru',birthdate: Date.parse("11.04.2006"))
 ivan = Student.new(name: 'Ivan',surname: 'Vasuta', patronymic: 'Alekseevich',id: 3,git: 'https://github.com/lilgost',telegram: '@lilgost_18',birthdate: Date.parse("12.09.2000"))
 maria = Student.new(name: 'Maria', surname: 'Ivanova', patronymic: 'Alexeevna', id: 4, phone: '89997776655', telegram: '@mivanova', email: 'm.ivanova@mail.ru', git: 'https://github.com/mivanova', birthdate: Date.parse("12.07.2002"))
@@ -147,3 +148,31 @@ data_list.select(2)
 data_table = data_list.get_data
 print_table(data_table)
 
+
+puts ("\n\n\n\nlab4.2")
+
+
+json = Student_list_JSON.new('./students.json')
+
+json.read
+
+puts json.get_student_by_id(2)
+
+data_list2 = json.get_k_n_student_short_list(1, 3)
+
+
+data_list2.select(0)
+data_list2.select(1)
+data_list2.select(2)
+
+
+table2 = data_list2.get_data
+print_table table2
+
+json.sort_by_full_name!
+
+json.delete_student(1)
+
+puts json.get_student_by_id(2)
+
+puts json.get_student_short_count

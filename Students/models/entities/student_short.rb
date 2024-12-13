@@ -35,6 +35,8 @@ class Student_short < Human
 
   private
 
+  attr_writer :id
+
   def full_name=(full_name)
       if (!self.class.valid_full_name?(full_name))
           raise ArgumentError, "Invalid full name format"

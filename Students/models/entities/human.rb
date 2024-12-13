@@ -45,17 +45,6 @@ class Human
         end
         @git = git
     end
-
-    def id=(id)
-        if (!self.class.valid_id?(id))
-            raise ArgumentError, "Invalid id format"
-        end
-        @id = id
-    end
-
-    def self.valid_id?(id)
-        id.nil? || id.is_a?(Integer) || /^\d+$/.match?(id.to_s)
-    end
     
     def self.valid_phone?(phone)
         phone.nil? || /^\+7|8[\s-]?(?:\(?\d{3}\)?[\s-]?)\d{3}[\s-]?\d{2}[\s-]?\d{2}$/.match?(phone)

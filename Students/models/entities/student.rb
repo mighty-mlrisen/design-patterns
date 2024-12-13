@@ -51,6 +51,10 @@ class Student < Human
     def to_s
         "#{"-------------------\nID: #{self.id}\n" unless self.id.nil?}Surname: #{ self.surname }\nName: #{ self.name }\nPatronymic: #{ self.patronymic }\n#{"Birthdate: #{ self.birthdate }\n" unless self.birthdate.nil?}#{"Phone Number: #{ self.phone }\n" unless self.phone.nil?}#{"Telegram: #{ self.telegram }\n" unless self.telegram.nil?}#{"Email: #{ self.email }\n" unless self.email.nil?}#{"Git: #{ self.git }\n" unless self.git.nil?}-------------------"
     end
+
+    def to_h
+        { id: self.id, surname: self.surname, name: self.name, patronymic: self.patronymic, birthdate: self.birthdate, telegram: self.telegram, email: self.email, phone_number: self.phone, git: self.git }
+    end
       
     def get_info
         "#{self.get_full_name}, git: #{self.git}, #{self.get_contact}"
@@ -85,6 +89,17 @@ class Student < Human
           else
             raise ArgumentError, "Invalid birthdate format"
           end
+    end
+
+    def id=(id)
+        if (!self.class.valid_id?(id))
+            raise ArgumentError, "Invalid id format"
+        end
+        @id = id
+    end
+
+    def self.valid_id?(id)
+        id.nil? || id.is_a?(Integer) || /^\d+$/.match?(id.to_s)
     end
 
     def set_contacts(**contacts)
