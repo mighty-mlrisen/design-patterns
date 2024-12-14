@@ -53,7 +53,7 @@ class Student < Human
     end
 
     def to_h
-        { id: self.id, surname: self.surname, name: self.name, patronymic: self.patronymic, birthdate: self.birthdate, telegram: self.telegram, email: self.email, phone_number: self.phone, git: self.git }
+        { id: self.id, surname: self.surname, name: self.name, patronymic: self.patronymic, birthdate: self.birthdate, telegram: self.telegram, email: self.email, phone: self.phone, git: self.git }
     end
       
     def get_info

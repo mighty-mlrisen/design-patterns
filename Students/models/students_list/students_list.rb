@@ -6,17 +6,18 @@ require './models/data_list/data_list_student_short.rb'
 
 class Students_list
     
-    def initialize(file_path)
+    def initialize(file_path, students_list_strategy)
         self.file_path = file_path
+        self.students_list_strategy = students_list_strategy
         self.students = []
     end
 
     def read
-        raise NotImplementedError, 'Subclass must implement this method'
+        self.students = self.students_list_strategy.read(self.file_path)
     end
 
     def write
-        raise NotImplementedError, 'Subclass must implement this method'
+        self.students_list_strategy.write(self.file_path,self.students)
     end
 
     def get_student_by_id(id)
@@ -57,5 +58,5 @@ class Students_list
     end
 
     private
-    attr_accessor :file_path, :students
+    attr_accessor :file_path, :students, :students_list_strategy
 end

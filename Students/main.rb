@@ -5,8 +5,9 @@ require './models/binary_tree/binary_tree.rb'
 require './models/data_table/data_table.rb'
 require './models/data_list/data_list.rb'
 require './models/data_list/data_list_student_short.rb'
-require './models/students_list_json.rb'
-require './models/students_list_yaml.rb'
+require './models/students_list/students_list.rb'
+require './models/students_list_strategy/students_list_strategy_json.rb'
+require './models/students_list_strategy/students_list_strategy_yaml.rb'
 require "date"
 
 def read_from_txt(path)
@@ -153,7 +154,7 @@ print_table(data_table)
 puts ("\n\n\n\nlab4.2")
 
 
-json = Students_list_JSON.new('./students.json')
+json = Students_list.new('./students.yaml',Students_list_strategy_yaml.new())
 
 json.read
 
