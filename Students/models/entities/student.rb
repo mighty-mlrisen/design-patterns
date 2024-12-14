@@ -33,6 +33,10 @@ class Student < Human
         )
     end
 
+    def self.init_with_hash(hash)
+        self.new(**hash.transform_keys(&:to_sym))
+    end
+
     def <=>(other)
         return nil unless other.is_a?(Student)
         return 0 if (self.birthdate.nil? && other.birthdate.nil?)

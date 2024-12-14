@@ -9,6 +9,8 @@ require './models/students_list/students_list.rb'
 require './models/students_list_strategy/students_list_strategy_json.rb'
 require './models/students_list_strategy/students_list_strategy_yaml.rb'
 require "date"
+require 'dotenv/load'
+require 'pg'
 
 def read_from_txt(path)
     if (path.nil?)
@@ -182,3 +184,24 @@ puts json.get_student_short_count
 
 
 
+puts ("\n\n\n\n\n Database:")
+
+client = PG.connect(
+    dbname: ENV['DB_NAME'],
+    user: ENV['DB_USERNAME'],
+    password: ENV['DB_PASSWORD'],
+    host: ENV['DB_HOST'],
+    port: ENV['DB_PORT']
+)
+
+begin
+  results = client.exec('SELECT * FROM student')
+
+  results.each do |row|
+        puts Student.init_with_hash(row)
+  end
+rescue PG::Error => e
+  puts "Error: #{e.message}"
+ensure
+  client.close if client
+end
