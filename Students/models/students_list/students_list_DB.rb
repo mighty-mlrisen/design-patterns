@@ -2,15 +2,16 @@ require 'pg'
 require './models/entities/student.rb'
 require './models/entities/student_short.rb'
 require './models/data_list/data_list_student_short.rb'
+require './database/db_connection.rb'
 
 class Students_list_DB
 
     def initialize(db_config)
-        self.db = PG.connect(db_config)
+        self.db = DB_connection.new(db_config)
     end
 
     def get_student_by_id(id)
-        result = self.db.exec_params("SELECT * FROM student WHERE id = $1", [id])
+        result = self.db.query("SELECT * FROM student WHERE id = $1", [id])
         row = result.first
         if (!row)
             return nil
@@ -20,14 +21,14 @@ class Students_list_DB
 
     def get_k_n_student_short_list(k, n, data_list = nil)
         start = (k - 1) * n
-        selected = self.db.exec_params("SELECT * FROM student LIMIT $1 OFFSET $2", [n, start])
+        selected = self.db.query("SELECT * FROM student LIMIT $1 OFFSET $2", [n, start])
         students_short = selected.map { |row| Student_short.init_with_student(Student.init_with_hash(row)) }
         data_list = data_list || Data_list_student_short.new(students_short)
         data_list
     end
 
     def add_student(student)
-      result = self.db.exec_params(
+      result = self.db.query(
         "INSERT INTO student (surname, name, patronymic, git, email, telegram, phone, birthdate) 
         VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id",
         [
@@ -38,7 +39,7 @@ class Students_list_DB
     end
 
     def replace_student(id, new_student)
-      result = self.db.exec_params(
+      result = self.db.query(
         "UPDATE student SET surname = $1, name = $2, patronymic = $3, git = $4, email = $5, 
         telegram = $6, phone = $7, birthdate = $8 WHERE id = $9",
         [
@@ -50,12 +51,12 @@ class Students_list_DB
     end
 
     def delete_student(id)
-      result = self.db.exec_params("DELETE FROM student WHERE id = $1", [id])
+      result = self.db.query("DELETE FROM student WHERE id = $1", [id])
       raise "Студент с ID #{id} не найден" if result.cmd_tuples == 0
     end
 
     def get_student_short_count
-      result = self.db.exec("SELECT COUNT(*) FROM student")
+      result = self.db.query("SELECT COUNT(*) FROM student")
       result[0]['count'].to_i
     end
 
