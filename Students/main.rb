@@ -8,6 +8,7 @@ require './models/data_list/data_list_student_short.rb'
 require './models/students_list/students_list.rb'
 require './models/students_list_strategy/students_list_strategy_json.rb'
 require './models/students_list_strategy/students_list_strategy_yaml.rb'
+require './models/students_list/students_list_DB.rb'
 require "date"
 require 'dotenv/load'
 require 'pg'
@@ -205,3 +206,22 @@ rescue PG::Error => e
 ensure
   client.close if client
 end
+
+
+puts ("\n\n\n\n\n test Students_list_DB:")
+
+
+
+db = Students_list_DB.new(
+        dbname: ENV['DB_NAME'],
+        user: ENV['DB_USERNAME'],
+        password: ENV['DB_PASSWORD'],
+        host: ENV['DB_HOST'],
+        port: ENV['DB_PORT']
+    )
+data_list = db.get_k_n_student_short_list(1, 5)
+data_list.select(0)
+data_list.select(4)
+data_list.select(2)
+table = data_list.get_data
+print_table table

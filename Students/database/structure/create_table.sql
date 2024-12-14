@@ -10,3 +10,9 @@ CREATE TABLE student (
 	git varchar(255),
     birthdate date NOT NULL
 );
+
+ALTER TABLE student
+ADD CONSTRAINT unique_telegram UNIQUE (telegram),
+ADD CONSTRAINT unique_email UNIQUE (email),
+ADD CONSTRAINT unique_git UNIQUE (git),
+ADD CONSTRAINT unique_phone UNIQUE (phone);

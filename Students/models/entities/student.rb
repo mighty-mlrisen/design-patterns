@@ -99,7 +99,11 @@ class Student < Human
         if (!self.class.valid_id?(id))
             raise ArgumentError, "Invalid id format"
         end
-        @id = id
+        if id.is_a?(String)
+            @id = id.to_i
+        else
+            @id = id
+        end
     end
 
     def self.valid_id?(id)

@@ -18,3 +18,6 @@ INSERT INTO student (surname, name, patronymic, telegram, email, phone, git, bir
 ('Григорьев', 'Денис', 'Владиславович', '@grigoriev', 'denis.grigoriev@gmail.com', '89107894561', 'https://github.com/denisgrigoriev', '2003-05-30'),
 ('Степанов', 'Арсений', 'Иванович', '@stepanov', 'arseniy.stepanov@gmail.com', '89012347890', 'https://github.com/arseniystepanov', '2004-09-01'),
 ('Егоров', 'Никита', 'Андреевич', '@egorov', 'nikita.egorov@gmail.com', '89107894562', 'https://github.com/nikitaegorov', '2002-07-12');
+
+
+
