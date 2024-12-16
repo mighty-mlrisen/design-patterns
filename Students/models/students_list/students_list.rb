@@ -37,12 +37,18 @@ class Students_list
     end
 
     def add_student(student)
+        if self.students.any? { |element| element == student }
+            raise ArgumentError, "Student already exists with these contacts!"
+        end
         max_id = self.students.map(&:id).max || 0
         student.id = max_id + 1
         self.students << student
     end
 
     def replace_student(id, new_student)
+        if self.students.any? { |element| element == student }
+            raise ArgumentError, "Student already exists with these contacts!"
+        end
         index = self.students.find_index { |student| student.id == id }
         raise IndexError, 'Student with this ID not found' unless index
         new_student.id = id

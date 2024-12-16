@@ -48,6 +48,16 @@ class Student < Human
 		self.birthdate <=> other.birthdate
     end
 
+    def ==(student)
+        unless student.is_a?(Student)
+          raise ArgumentError, "Expected an instance of Student"
+        end
+        if @phone && student.phone && @phone == student.phone || @git && student.git && @git == student.git || @email && student.email && @email == student.email || @telegram && student.telegram && @telegram = student.telegram
+          return true
+        end
+        return false
+    end
+
     def self.valid_full_name?(name)
         /^[А-ЯЁA-Z][а-яёa-z]+(-[А-ЯЁA-Z][а-яёa-z]+)?$/.match?(name)
     end
