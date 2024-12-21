@@ -22,10 +22,8 @@ class Data_list
     def get_data
         index = 1
         data_table = [self.get_names]
-        selected = self.get_selected
-        selected.each do |selected_index|
-            data = self.data[selected_index]
-            row = self.build_row(index,data)
+        self.data.each do |selected|
+            row = self.build_row(index,selected)
             data_table.append(row)
             index += 1
         end
@@ -38,7 +36,8 @@ class Data_list
 
     def get_names
       raise NotImplementedError, "Not implemented"
-    end
+    end 
+
 
     protected
     attr_reader :data

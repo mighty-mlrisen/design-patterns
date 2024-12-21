@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "surname": "Mazurenko",
+    "surname": "Cazurenko",
     "name": "Artem",
     "patronymic": "Alekseevich",
     "birthdate": "2004-03-18",
@@ -12,7 +12,7 @@
   },
   {
     "id": 2,
-    "surname": "Solovyev",
+    "surname": "Bolovyev",
     "name": "Vlad",
     "patronymic": "Olegovich",
     "birthdate": "2006-04-11",
@@ -28,8 +28,8 @@
     "patronymic": "Alekseevich",
     "birthdate": "2000-09-12",
     "telegram": "@lilgost_18",
-    "email": null,
-    "phone": null,
+    "email": "vladsologwhe12@yandex.ru",
+    "phone": "89096753111",
     "git": "https://github.com/lilgost"
   }
 ]
