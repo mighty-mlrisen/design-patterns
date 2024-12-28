@@ -18,7 +18,7 @@
     "birthdate": "2006-04-11",
     "telegram": "@mightygost",
     "email": "vladsolovyev@yandex.ru",
-    "phone": "+7-(909)-578-45-73",
+    "phone": "89095784535",
     "git": "https://github.com/mightygost"
   },
   {
@@ -31,5 +31,247 @@
     "email": "vladsologwhe12@yandex.ru",
     "phone": "89096753111",
     "git": "https://github.com/lilgost"
+  },
+  {
+    "id": 4,
+    "surname": "Ivanov",
+    "name": "Alexey",
+    "patronymic": "Dmitrievich",
+    "birthdate": "2002-01-15",
+    "telegram": "@alex_ivanov",
+    "email": "ivanov.alexey@mail.ru",
+    "phone": "89156782345",
+    "git": "https://github.com/alexivanov"
+  },
+  {
+    "id": 5,
+    "surname": "Petrov",
+    "name": "Sergey",
+    "patronymic": "Ivanovich",
+    "birthdate": "1999-07-24",
+    "telegram": "@sergpetrov",
+    "email": "sergey.petrov@gmail.com",
+    "phone": "89157432345",
+    "git": "https://github.com/sergpetrov"
+  },
+  {
+    "id": 6,
+    "surname": "Sidorov",
+    "name": "Nikolay",
+    "patronymic": "Sergeevich",
+    "birthdate": "2001-05-18",
+    "telegram": "@nick_sidorov",
+    "email": "nick.sidorov@yandex.ru",
+    "phone": "89216784567",
+    "git": "https://github.com/nicksidorov"
+  },
+  {
+    "id": 7,
+    "surname": "Kuznetsov",
+    "name": "Pavel",
+    "patronymic": "Mikhailovich",
+    "birthdate": "1998-03-10",
+    "telegram": "@pavelkuz",
+    "email": "pavel.kuznetsov@mail.ru",
+    "phone": "89153427891",
+    "git": "https://github.com/pavelkuz"
+  },
+  {
+    "id": 8,
+    "surname": "Smirnov",
+    "name": "Dmitry",
+    "patronymic": "Petrovich",
+    "birthdate": "1997-12-22",
+    "telegram": "@dmitrysmirnov",
+    "email": "dmitry.smirnov@gmail.com",
+    "phone": "89014327654",
+    "git": "https://github.com/dmitrysmirnov"
+  },
+  {
+    "id": 9,
+    "surname": "Volkov",
+    "name": "Oleg",
+    "patronymic": "Andreevich",
+    "birthdate": "2003-11-09",
+    "telegram": "@olegvolkov",
+    "email": "oleg.volkov@mail.ru",
+    "phone": "89156782539",
+    "git": "https://github.com/olegvolkov"
+  },
+  {
+    "id": 10,
+    "surname": "Popov",
+    "name": "Egor",
+    "patronymic": "Vladimirovich",
+    "birthdate": "1996-06-17",
+    "telegram": "@egorpopov",
+    "email": "egor.popov@gmail.com",
+    "phone": "89231234567",
+    "git": "https://github.com/egorpopov"
+  },
+  {
+    "id": 11,
+    "surname": "Fedorov",
+    "name": "Vladimir",
+    "patronymic": "Nikolaevich",
+    "birthdate": "1995-08-20",
+    "telegram": "@vladfedorov",
+    "email": "vladimir.fedorov@mail.ru",
+    "phone": "89096543210",
+    "git": "https://github.com/vladfedorov"
+  },
+  {
+    "id": 12,
+    "surname": "Kuzina",
+    "name": "Anna",
+    "patronymic": "Alexandrovna",
+    "birthdate": "2002-04-05",
+    "telegram": "@annakuzina",
+    "email": "anna.kuzina@mail.ru",
+    "phone": "89097343210",
+    "git": "https://github.com/annakuzina"
+  },
+  {
+    "id": 13,
+    "surname": "Orlov",
+    "name": "Konstantin",
+    "patronymic": "Igorevich",
+    "birthdate": "1998-02-14",
+    "telegram": "@konstantinorlov",
+    "email": "konstantin.orlov@gmail.com",
+    "phone": "89127894567",
+    "git": "https://github.com/konstantinorlov"
+  },
+  {
+    "id": 14,
+    "surname": "Zaytsev",
+    "name": "Ivan",
+    "patronymic": "Sergeevich",
+    "birthdate": "1999-03-23",
+    "telegram": "@ivanzaytsev",
+    "email": "ivan.zaytsev@mail.ru",
+    "phone": "89216783456",
+    "git": "https://github.com/ivanzaytsev"
+  },
+  {
+    "id": 15,
+    "surname": "Grigoriev",
+    "name": "Roman",
+    "patronymic": "Alexandrovich",
+    "birthdate": "2001-07-30",
+    "telegram": "@romangrigoriev",
+    "email": "roman.grigoriev@gmail.com",
+    "phone": "89096543844",
+    "git": "https://github.com/romangrigoriev"
+  },
+  {
+    "id": 16,
+    "surname": "Yakovlev",
+    "name": "Mikhail",
+    "patronymic": "Pavlovich",
+    "birthdate": "2003-10-25",
+    "telegram": "@mikhailyakovlev",
+    "email": "mikhail.yakovlev@mail.ru",
+    "phone": "89123456789",
+    "git": "https://github.com/mikhailyakovlev"
+  },
+  {
+    "id": 17,
+    "surname": "Vasiliev",
+    "name": "Stepan",
+    "patronymic": "Petrovich",
+    "birthdate": "1997-05-15",
+    "telegram": "@stepanvasiliev",
+    "email": "stepan.vasiliev@gmail.com",
+    "phone": "89214327654",
+    "git": "https://github.com/stepanvasiliev"
+  },
+  {
+    "id": 18,
+    "surname": "Sokolov",
+    "name": "Alexey",
+    "patronymic": "Igorevich",
+    "birthdate": "1996-01-09",
+    "telegram": "@alexeysokolov",
+    "email": "alexey.sokolov@mail.ru",
+    "phone": "89127894567",
+    "git": "https://github.com/alexeysokolov"
+  },
+  {
+    "id": 19,
+    "surname": "Morozov",
+    "name": "Viktor",
+    "patronymic": "Vladimirovich",
+    "birthdate": "2000-12-11",
+    "telegram": "@viktormorozov",
+    "email": "viktor.morozov@gmail.com",
+    "phone": "89216782345",
+    "git": "https://github.com/viktormorozov"
+  },
+  {
+    "id": 20,
+    "surname": "Trofimov",
+    "name": "Igor",
+    "patronymic": "Dmitrievich",
+    "birthdate": "2004-06-18",
+    "telegram": "@igortrofimov",
+    "email": "igor.trofimov@mail.ru",
+    "phone": "89216647654",
+    "git": "https://github.com/igortrofimov"
+  },
+  {
+    "id": 21,
+    "surname": "Nikolaev",
+    "name": "Artem",
+    "patronymic": "Andreevich",
+    "birthdate": "2005-08-12",
+    "telegram": "@artemnikolaev",
+    "email": "artem.nikolaev@gmail.com",
+    "phone": "89093427891",
+    "git": "https://github.com/artemnikolaev"
+  },
+  {
+    "id": 22,
+    "surname": "Chernov",
+    "name": "Evgeny",
+    "patronymic": "Mikhailovich",
+    "birthdate": "1995-03-05",
+    "telegram": "@evgenychernov",
+    "email": "evgeny.chernov@mail.ru",
+    "phone": "89127683456",
+    "git": "https://github.com/evgenychernov"
+  },
+  {
+    "id": 23,
+    "surname": "Karpov",
+    "name": "Anton",
+    "patronymic": "Pavlovich",
+    "birthdate": "1998-09-21",
+    "telegram": "@antonkarpov",
+    "email": "anton.karpov@gmail.com",
+    "phone": "89214567890",
+    "git": "https://github.com/antonkarpov"
+  },
+  {
+    "id": 24,
+    "surname": "Zhukov",
+    "name": "Nikita",
+    "patronymic": "Sergeevich",
+    "birthdate": "1999-11-30",
+    "telegram": "@nikitazhukov",
+    "email": "nikita.zhukov@mail.ru",
+    "phone": "89124567891",
+    "git": "https://github.com/nikitazhukov"
+  },
+  {
+    "id": 25,
+    "surname": "Polyakov",
+    "name": "Maxim",
+    "patronymic": "Olegovich",
+    "birthdate": "2002-02-17",
+    "telegram": "@maximpolyakov",
+    "email": "maxim.polyakov@gmail.com",
+    "phone": "89231237890",
+    "git": "https://github.com/maximpolyakov"
   }
 ]

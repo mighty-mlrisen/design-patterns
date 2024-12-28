@@ -208,7 +208,7 @@ class StudentListView < FXMainWindow
         self.sort_order ||= {}
         self.sort_order[col_idx] = !sort_order.fetch(col_idx, false)
 
-        sorted_rows = rows.sort_by do |row| 
+        sorted_rows = rows.sort_by do |row|          
             value = row[col_idx]
             value.nil? ? "\xFF" * 1000 : value
         end

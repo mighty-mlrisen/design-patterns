@@ -14,6 +14,6 @@ db = Students_list_DB.new(
         host: ENV['DB_HOST'],
         port: ENV['DB_PORT']
     )
-StudentListView.new(app, db)
+StudentListView.new(app, students_list)
 app.create
 app.run
