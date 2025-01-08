@@ -1,7 +1,10 @@
 class Data_list
-    def initialize(elements)
+    def initialize(elements, offset = 0)
         self.data = elements
         self.selected = []
+        self.offset = offset
+        self.observers = []
+        self.count = 0
     end
 
     def select(number)
@@ -30,6 +33,18 @@ class Data_list
         Data_table.new(data_table)
     end
 
+    def notify
+        return if observers.nil?
+        observers.each do |observer|
+            observer.set_table_params(self.get_names, self.count)
+            observer.set_table_data(self.get_data)
+        end
+    end
+
+    def add_observer(observer)
+        self.observers << observer
+    end
+
     def data=(elements)
       @data = elements
     end
@@ -38,10 +53,12 @@ class Data_list
       raise NotImplementedError, "Not implemented"
     end 
 
+    attr_accessor :count
+    attr_writer :offset
 
     protected
-    attr_reader :data
-    attr_accessor :selected
+    attr_reader :data, :offset
+    attr_accessor :selected, :observers
 
     def build_row(index, obj)
       raise NotImplementedError, "Not implemented"

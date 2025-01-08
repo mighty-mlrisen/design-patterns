@@ -10,15 +10,15 @@ include Fox
 
 class StudentListView < FXMainWindow
 
-    def initialize(app, students_list)
+    def initialize(app)
         super(app, "Student List", width: 1080, height: 505)
 
-        self.controller = Student_list_controller.new(self, students_list)
+        self.controller = Student_list_controller.new(self)
 
         self.filters = {}
-        self.students_list = students_list
         self.current_page = 1
         self.items_per_page = 21
+        self.total_pages = 0
 
         # Главный контейнер
         main_frame = FXHorizontalFrame.new(self, LAYOUT_FILL_X | LAYOUT_FILL_Y)
@@ -35,10 +35,30 @@ class StudentListView < FXMainWindow
         control_frame = FXVerticalFrame.new(main_frame, LAYOUT_FIX_WIDTH, width: 150, padding: 10)
         setup_control_area(control_frame)
 
-        load_data
+        refresh_data
 
-        # Инициализация таблицы
-        update_table
+    end
+
+    def refresh_data
+        self.current_page = 1
+        self.controller.refresh_data
+    end
+
+    def set_table_params(column_names, entries_count)
+        column_names.each_with_index do |name, index|
+            self.table.setItemText(0, index, name)
+        end
+        self.total_pages = (entries_count / self.items_per_page.to_f).ceil
+        self.page_label.text = "Страница #{self.current_page} из #{self.total_pages}"
+    end
+
+    def set_table_data(data_table)
+        clear_table
+        (0...data_table.row_count).each do |row|
+            (0...data_table.col_count).each do |col|
+                self.table.setItemText(row, col, data_table.get_element(row, col).to_s)
+            end
+        end
     end
 
     def setup_filter_area(parent)
@@ -82,15 +102,17 @@ class StudentListView < FXMainWindow
     def setup_table_area(parent)
         # Таблица
         self.table = FXTable.new(parent, opts: LAYOUT_FILL_X | LAYOUT_FILL_Y | TABLE_READONLY | TABLE_COL_SIZABLE)
-        self.table.setTableSize(self.items_per_page, 3)
-        self.table.defColumnWidth = 180
+        self.table.setTableSize(self.items_per_page, 4)
+        self.table.setColumnWidth(0, 30)
+        (1...4).each { |col| self.table.setColumnWidth(col, 180) }
         self.table.rowHeaderWidth = 0
         self.table.columnHeaderHeight = 0
+        self.table.setColumnWidth(2, 253)
 
         self.table.connect(SEL_COMMAND) do |_, _, pos|
-            if pos.row == 0
-                #sort_table_by_column(pos.col)
-                update_table
+            if pos.row == 0 && pos.col == 1
+                self.controller.sort_table_by_column
+                self.controller.refresh_data
             end
 
             if pos.col == 0
@@ -134,7 +156,7 @@ class StudentListView < FXMainWindow
         # Кнопка "Обновить" - доступна всегда
         refresh_button = FXButton.new(parent, "Обновить", opts: BUTTON_NORMAL | LAYOUT_FILL_X)
         refresh_button.connect(SEL_COMMAND) do
-            update_table
+            refresh_data
         end
 
         # Обновляем доступность кнопок при изменении выделения в таблице
@@ -152,62 +174,30 @@ class StudentListView < FXMainWindow
         self.edit_button.enabled = (selected_rows.size == 1)
     end
 
-    def update_table
-        return if self.data.nil? || self.data.row_count <= 1
-        total_pages = (self.data.row_count.to_f / self.items_per_page).ceil
-        self.page_label.text = "Страница #{self.current_page} из #{total_pages}"
-
-        # Рассчитываем индекс начала и конца для текущей страницы
-        start_idx = (self.current_page - 1) * self.items_per_page
-        end_idx = [start_idx + self.items_per_page - 1, self.data.row_count - 1].min
-
-        headers = (0...data.col_count).map {|col_idx| data.get_element(0, col_idx)}
-
-        # Формируем подмассив данных для текущей страницы
-        data_for_page = (start_idx+1..end_idx).map do |row_idx|
-            (0...self.data.col_count).map do |col_idx|
-                self.data.get_element(row_idx, col_idx)
-            end
-        end
-
-        data_for_page = [headers] + data_for_page
-
-        # Обновляем таблицу
-        row_count = data_for_page.length
-        column_count = self.data.col_count
-
-        self.table.setTableSize(row_count, column_count)
-        self.table.setColumnWidth(0, 30)
-
-        (0...row_count).each do |row_idx|
-            (0...column_count).each do |col_idx|
-                value = data_for_page[row_idx][col_idx]
-                self.table.setItemText(row_idx, col_idx, value.to_s)
-            end
-        end
-    end
-
     def change_page(offset)
         new_page = self.current_page + offset
-        total_pages = (self.data.row_count.to_f / self.items_per_page).ceil
-        return if new_page < 1 || new_page > total_pages
+        return if new_page < 1 || new_page > self.total_pages
 
         self.current_page = new_page
-        update_table
+        self.controller.refresh_data
     end
 
-    def load_data
-        self.data = self.controller.refresh_data
-        puts "Test: #{self.data.row_count}"
+    def show_error_message(message)
+        if self.created?
+            FXMessageBox.error(self, MBOX_OK, "Ошибка", message)
+        else
+            puts "Ошибка: #{message}"
+        end
     end
 
     def create
         super
         show(PLACEMENT_SCREEN)
     end
+    attr_accessor :current_page, :items_per_page
 
     private
-    attr_accessor :filters, :students_list, :current_page, :items_per_page, :table, :prev_button, :next_button, :page_label, :sort_order, :data, :selected_rows, :edit_button, :delete_button, :controller
+    attr_accessor :filters, :table, :prev_button, :next_button, :page_label, :sort_order, :selected_rows, :edit_button, :delete_button, :controller, :total_pages
 
     def reset_filters
         self.filters.each do |key, field|
@@ -215,6 +205,15 @@ class StudentListView < FXMainWindow
             field[:text_field].text = ""
             field[:text_field].visible = false if key != 'name'
         end
-        update_table
+        refresh_data
     end
+
+    def clear_table
+        (0...self.table.numRows).each do |row|
+            (0...self.table.numColumns).each do |col|
+                self.table.setItemText(row, col, "")
+            end
+        end
+    end
+
 end

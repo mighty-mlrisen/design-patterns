@@ -29,6 +29,8 @@ class Students_list
         selected = self.students[start, n] || []
         students_short = selected.map { |student| Student_short.init_with_student(student) }
         data_list = data_list || Data_list_student_short.new(students_short)
+        data_list.offset = start
+        data_list.data = students_short
         data_list
     end
 

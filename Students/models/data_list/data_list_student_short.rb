@@ -10,6 +10,6 @@ class Data_list_student_short < Data_list
     private
 
     def build_row(index,data)
-        [index, data.get_full_name, data.git, data.get_contact]
+        [index + offset, data.get_full_name, data.git, data.get_contact]
     end
 end
