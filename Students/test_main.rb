@@ -228,4 +228,3 @@ data_list.select(4)
 data_list.select(2)
 table = data_list.get_data
 print_table table
-
